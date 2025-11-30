@@ -1,4 +1,4 @@
-# Lighter Starter Kit - iOS + Mac App using SwiftUI
+# Lightweight Starter Kit - iOS + Mac App using SwiftUI
 
 ## How it looks?
 
