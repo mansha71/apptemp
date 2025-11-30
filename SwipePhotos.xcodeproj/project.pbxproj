@@ -1,0 +1,735 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C16AF9602EBE8482006B7747 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C16AF95F2EBE8482006B7747 /* StoreKit.framework */; };
+		C18020692EDC1E8C00DC8605 /* ReceiptParser in Frameworks */ = {isa = PBXBuildFile; productRef = C18020682EDC1E8C00DC8605 /* ReceiptParser */; };
+		C180206B2EDC1E8C00DC8605 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = C180206A2EDC1E8C00DC8605 /* RevenueCat */; };
+		C180206F2EDC1E8C00DC8605 /* RevenueCatUI in Frameworks */ = {isa = PBXBuildFile; productRef = C180206E2EDC1E8C00DC8605 /* RevenueCatUI */; };
+		C18020712EDC1E8C00DC8605 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = C18020702EDC1E8C00DC8605 /* Auth */; };
+		C18020732EDC1E8C00DC8605 /* Functions in Frameworks */ = {isa = PBXBuildFile; productRef = C18020722EDC1E8C00DC8605 /* Functions */; };
+		C18020752EDC1E8C00DC8605 /* PostgREST in Frameworks */ = {isa = PBXBuildFile; productRef = C18020742EDC1E8C00DC8605 /* PostgREST */; };
+		C18020772EDC1E8C00DC8605 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = C18020762EDC1E8C00DC8605 /* Realtime */; };
+		C18020792EDC1E8C00DC8605 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = C18020782EDC1E8C00DC8605 /* Storage */; };
+		C180207B2EDC1E8C00DC8605 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = C180207A2EDC1E8C00DC8605 /* Supabase */; };
+		C180207D2EDC1E8C00DC8605 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C180207C2EDC1E8C00DC8605 /* GoogleSignIn */; };
+		C180207F2EDC1E8C00DC8605 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C180207E2EDC1E8C00DC8605 /* GoogleSignInSwift */; };
+		C18B477D2EDC33450052B1E7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB35CE2EB29B4A004CDAA5 /* WidgetKit.framework */; };
+		C18B477E2EDC33450052B1E7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB35D02EB29B4A004CDAA5 /* SwiftUI.framework */; };
+		C18B478D2EDC33460052B1E7 /* SwipePhotosExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C18020352EDC1DCC00DC8605 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
+			remoteInfo = SwipePhotosExtensionExtension;
+		};
+		C18020812EDC1E8C00DC8605 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
+			remoteInfo = SwipePhotosExtensionExtension;
+		};
+		C18020842EDC1ED500DC8605 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
+			remoteInfo = SwipePhotosExtensionExtension;
+		};
+		C18021402EDC24DD00DC8605 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
+			remoteInfo = SwipePhotosExtensionExtension;
+		};
+		C18B478B2EDC33460052B1E7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
+			remoteInfo = SwipePhotosExtensionExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C18020832EDC1E8C00DC8605 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				C18B478D2EDC33460052B1E7 /* SwipePhotosExtensionExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		C16AF95F2EBE8482006B7747 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SwipePhotosExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1BB35AD2EB2992B004CDAA5 /* Swipe Photos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swipe Photos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1BB35CE2EB29B4A004CDAA5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		C1BB35D02EB29B4A004CDAA5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		C1BB35E42EB29B9A004CDAA5 /* SwipePhotosExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwipePhotosExtensionExtension.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		C18B47912EDC33460052B1E7 /* Exceptions for "SwipePhotosExtension" folder in "SwipePhotosExtensionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+		};
+		C1DFD6BB2EB7F1C600CDCC77 /* Exceptions for "SwipePhotos" folder in "SwipePhotos" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = C1BB35AC2EB2992B004CDAA5 /* SwipePhotos */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		C18B477F2EDC33450052B1E7 /* SwipePhotosExtension */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C18B47912EDC33460052B1E7 /* Exceptions for "SwipePhotosExtension" folder in "SwipePhotosExtensionExtension" target */,
+			);
+			path = SwipePhotosExtension;
+			sourceTree = "<group>";
+		};
+		C1BB35AF2EB2992B004CDAA5 /* SwipePhotos */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				C1DFD6BB2EB7F1C600CDCC77 /* Exceptions for "SwipePhotos" folder in "SwipePhotos" target */,
+			);
+			path = SwipePhotos;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C18B47792EDC33450052B1E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C18B477E2EDC33450052B1E7 /* SwiftUI.framework in Frameworks */,
+				C18B477D2EDC33450052B1E7 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1BB35AA2EB2992B004CDAA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C180207B2EDC1E8C00DC8605 /* Supabase in Frameworks */,
+				C18020772EDC1E8C00DC8605 /* Realtime in Frameworks */,
+				C18020692EDC1E8C00DC8605 /* ReceiptParser in Frameworks */,
+				C16AF9602EBE8482006B7747 /* StoreKit.framework in Frameworks */,
+				C18020712EDC1E8C00DC8605 /* Auth in Frameworks */,
+				C180207F2EDC1E8C00DC8605 /* GoogleSignInSwift in Frameworks */,
+				C180207D2EDC1E8C00DC8605 /* GoogleSignIn in Frameworks */,
+				C180206B2EDC1E8C00DC8605 /* RevenueCat in Frameworks */,
+				C18020752EDC1E8C00DC8605 /* PostgREST in Frameworks */,
+				C18020732EDC1E8C00DC8605 /* Functions in Frameworks */,
+				C180206F2EDC1E8C00DC8605 /* RevenueCatUI in Frameworks */,
+				C18020792EDC1E8C00DC8605 /* Storage in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C1BB35A42EB2992B004CDAA5 = {
+			isa = PBXGroup;
+			children = (
+				C1BB35E42EB29B9A004CDAA5 /* SwipePhotosExtensionExtension.entitlements */,
+				C1BB35AF2EB2992B004CDAA5 /* SwipePhotos */,
+				C18B477F2EDC33450052B1E7 /* SwipePhotosExtension */,
+				C1BB35CD2EB29B4A004CDAA5 /* Frameworks */,
+				C1BB35AE2EB2992B004CDAA5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C1BB35AE2EB2992B004CDAA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C1BB35AD2EB2992B004CDAA5 /* Swipe Photos.app */,
+				C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C1BB35CD2EB29B4A004CDAA5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C16AF95F2EBE8482006B7747 /* StoreKit.framework */,
+				C1BB35CE2EB29B4A004CDAA5 /* WidgetKit.framework */,
+				C1BB35D02EB29B4A004CDAA5 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C18B478E2EDC33460052B1E7 /* Build configuration list for PBXNativeTarget "SwipePhotosExtensionExtension" */;
+			buildPhases = (
+				C18B47782EDC33450052B1E7 /* Sources */,
+				C18B47792EDC33450052B1E7 /* Frameworks */,
+				C18B477A2EDC33450052B1E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C18B477F2EDC33450052B1E7 /* SwipePhotosExtension */,
+			);
+			name = SwipePhotosExtensionExtension;
+			packageProductDependencies = (
+			);
+			productName = SwipePhotosExtensionExtension;
+			productReference = C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		C1BB35AC2EB2992B004CDAA5 /* SwipePhotos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C1BB35BA2EB2992C004CDAA5 /* Build configuration list for PBXNativeTarget "SwipePhotos" */;
+			buildPhases = (
+				C1BB35A92EB2992B004CDAA5 /* Sources */,
+				C1BB35AA2EB2992B004CDAA5 /* Frameworks */,
+				C1BB35AB2EB2992B004CDAA5 /* Resources */,
+				C18020832EDC1E8C00DC8605 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C18020362EDC1DCC00DC8605 /* PBXTargetDependency */,
+				C18020822EDC1E8C00DC8605 /* PBXTargetDependency */,
+				C18020852EDC1ED500DC8605 /* PBXTargetDependency */,
+				C18021412EDC24DD00DC8605 /* PBXTargetDependency */,
+				C18B478C2EDC33460052B1E7 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				C1BB35AF2EB2992B004CDAA5 /* SwipePhotos */,
+			);
+			name = SwipePhotos;
+			packageProductDependencies = (
+				C18020682EDC1E8C00DC8605 /* ReceiptParser */,
+				C180206A2EDC1E8C00DC8605 /* RevenueCat */,
+				C180206E2EDC1E8C00DC8605 /* RevenueCatUI */,
+				C18020702EDC1E8C00DC8605 /* Auth */,
+				C18020722EDC1E8C00DC8605 /* Functions */,
+				C18020742EDC1E8C00DC8605 /* PostgREST */,
+				C18020762EDC1E8C00DC8605 /* Realtime */,
+				C18020782EDC1E8C00DC8605 /* Storage */,
+				C180207A2EDC1E8C00DC8605 /* Supabase */,
+				C180207C2EDC1E8C00DC8605 /* GoogleSignIn */,
+				C180207E2EDC1E8C00DC8605 /* GoogleSignInSwift */,
+			);
+			productName = SwipePhotos;
+			productReference = C1BB35AD2EB2992B004CDAA5 /* Swipe Photos.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C1BB35A52EB2992B004CDAA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2610;
+				LastUpgradeCheck = 2610;
+				TargetAttributes = {
+					C18B477B2EDC33450052B1E7 = {
+						CreatedOnToolsVersion = 26.1.1;
+					};
+					C1BB35AC2EB2992B004CDAA5 = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+				};
+			};
+			buildConfigurationList = C1BB35A82EB2992B004CDAA5 /* Build configuration list for PBXProject "SwipePhotos" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C1BB35A42EB2992B004CDAA5;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				C18020652EDC1E6400DC8605 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
+				C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+				C18020672EDC1E8500DC8605 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = C1BB35AE2EB2992B004CDAA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C1BB35AC2EB2992B004CDAA5 /* SwipePhotos */,
+				C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C18B477A2EDC33450052B1E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1BB35AB2EB2992B004CDAA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C18B47782EDC33450052B1E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C1BB35A92EB2992B004CDAA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C18020362EDC1DCC00DC8605 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			targetProxy = C18020352EDC1DCC00DC8605 /* PBXContainerItemProxy */;
+		};
+		C18020822EDC1E8C00DC8605 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			targetProxy = C18020812EDC1E8C00DC8605 /* PBXContainerItemProxy */;
+		};
+		C18020852EDC1ED500DC8605 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			targetProxy = C18020842EDC1ED500DC8605 /* PBXContainerItemProxy */;
+		};
+		C18021412EDC24DD00DC8605 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			targetProxy = C18021402EDC24DD00DC8605 /* PBXContainerItemProxy */;
+		};
+		C18B478C2EDC33460052B1E7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			targetProxy = C18B478B2EDC33460052B1E7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		C18B478F2EDC33460052B1E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DT7N3X7L4B;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwipePhotosExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwipePhotosExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prosamik.swipephotosapp.SwipePhotosExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C18B47902EDC33460052B1E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DT7N3X7L4B;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwipePhotosExtension/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = SwipePhotosExtension;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prosamik.swipephotosapp.SwipePhotosExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C1BB35B82EB2992C004CDAA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = DT7N3X7L4B;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C1BB35B92EB2992C004CDAA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = DT7N3X7L4B;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		C1BB35BB2EB2992C004CDAA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SwipePhotos/SwipePhotos.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DT7N3X7L4B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwipePhotos/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Swipe Photos";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prosamik.swipephotosapp;
+				PRODUCT_NAME = "Swipe Photos";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C1BB35BC2EB2992C004CDAA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SwipePhotos/SwipePhotos.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DT7N3X7L4B;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SwipePhotos/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Swipe Photos";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.prosamik.swipephotosapp;
+				PRODUCT_NAME = "Swipe Photos";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C18B478E2EDC33460052B1E7 /* Build configuration list for PBXNativeTarget "SwipePhotosExtensionExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C18B478F2EDC33460052B1E7 /* Debug */,
+				C18B47902EDC33460052B1E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1BB35A82EB2992B004CDAA5 /* Build configuration list for PBXProject "SwipePhotos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1BB35B82EB2992C004CDAA5 /* Debug */,
+				C1BB35B92EB2992C004CDAA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C1BB35BA2EB2992C004CDAA5 /* Build configuration list for PBXNativeTarget "SwipePhotos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C1BB35BB2EB2992C004CDAA5 /* Debug */,
+				C1BB35BC2EB2992C004CDAA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C18020652EDC1E6400DC8605 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RevenueCat/purchases-ios-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.49.2;
+			};
+		};
+		C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase/supabase-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+		C18020672EDC1E8500DC8605 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C18020682EDC1E8C00DC8605 /* ReceiptParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020652EDC1E6400DC8605 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = ReceiptParser;
+		};
+		C180206A2EDC1E8C00DC8605 /* RevenueCat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020652EDC1E6400DC8605 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCat;
+		};
+		C180206E2EDC1E8C00DC8605 /* RevenueCatUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020652EDC1E6400DC8605 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */;
+			productName = RevenueCatUI;
+		};
+		C18020702EDC1E8C00DC8605 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		C18020722EDC1E8C00DC8605 /* Functions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Functions;
+		};
+		C18020742EDC1E8C00DC8605 /* PostgREST */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = PostgREST;
+		};
+		C18020762EDC1E8C00DC8605 /* Realtime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Realtime;
+		};
+		C18020782EDC1E8C00DC8605 /* Storage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Storage;
+		};
+		C180207A2EDC1E8C00DC8605 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+		C180207C2EDC1E8C00DC8605 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020672EDC1E8500DC8605 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		C180207E2EDC1E8C00DC8605 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C18020672EDC1E8500DC8605 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = C1BB35A52EB2992B004CDAA5 /* Project object */;
+}
