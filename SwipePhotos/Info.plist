@@ -2,29 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CFBundleIdentifier</key>
-	<string>com.prosamik.swipephotosapp</string>
-	<key>CFBundleName</key>
-	<string>Swipe Photos</string>
-	<key>CFBundleDisplayName</key>
-	<string>Swipe Photos</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleExecutable</key>
-	<string>Swipe Photos</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>UILaunchScreen</key>
-	<dict/>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -42,7 +19,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.991467204739-6i50e59emoqqhs0ej3hkho1g9ge5t6a9</string>
+				<string>com.googleusercontent.apps.991467204739-kkr2g2n65bobpjak05gi4rosvp16vk7k</string>
 			</array>
 		</dict>
 		<dict>
@@ -53,10 +30,10 @@
 		</dict>
 	</array>
 	<key>GIDClientID</key>
-	<string>991467204739-6i50e59emoqqhs0ej3hkho1g9ge5t6a9.apps.googleusercontent.com</string>
+	<string>991467204739-kkr2g2n65bobpjak05gi4rosvp16vk7k.apps.googleusercontent.com</string>
 	<key>NSAppTransportSecurity</key>
 	<dict/>
-	<key>NSFaceIDUsageDescription</key>
-	<string>We use Face ID to securely authenticate your access to the app and protect your personal photos and data</string>
+	<key>UILaunchScreen</key>
+	<dict/>
 </dict>
 </plist>
