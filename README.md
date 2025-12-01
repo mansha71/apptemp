@@ -22,18 +22,27 @@
 https://www.youtube.com/watch?v=81GiWxq-NSw
 
 ## 1- Setup Supabase Sign-in: Create new Supabase Project
-- Watch this YouTube video on how to setup public API Key for Supabase- https://www.youtube.com/watch?v=QEqOaOYHOYU&t=206s
+- Watch this YouTube video on how to setup public API Key for Supabase
+
+https://www.youtube.com/watch?v=QEqOaOYHOYU&t=206s
 
 ## 2- Setup Apple Sign-in: Allow Social sign in and allow from Apple Developers
-- Watch this YouTube video- [https://www.youtube.com/watch?v=E1j70_Up6aU](https://www.youtube.com/watch?v=E1j70_Up6aU)
+
+https://www.youtube.com/watch?v=E1j70_Up6aU
 
 ## 3- Setup Google Sign-in: Allow Google sign in and setup Google console
-- Watch this YouTube video- [https://www.youtube.com/watch?v=8QGghYtaX04](https://www.youtube.com/watch?v=8QGghYtaX04)
+
+https://www.youtube.com/watch?v=8QGghYtaX04
 
 ## 4- For RevenueCat setup watch these 2 videos:
 
-- 1/ RevenueCat Dashboard setup- [https://www.youtube.com/watch?v=X6xesg7YrU0](https://www.youtube.com/watch?v=X6xesg7YrU0)
-- 2/ RevenueCat Code setup for API- [https://www.youtube.com/watch?v=8LA1O_ykskA](https://www.youtube.com/watch?v=8LA1O_ykskA)
+- 1/ RevenueCat Dashboard setup-
+
+https://www.youtube.com/watch?v=X6xesg7YrU0
+  
+- 2/ RevenueCat Code setup for API-
+
+https://www.youtube.com/watch?v=8LA1O_ykskA
 
 ## 5- Setup SQL: Create fresh database setup
 
