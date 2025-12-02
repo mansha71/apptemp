@@ -2,6 +2,7 @@ import SwiftUI
 import Supabase
 import StoreKit
 import LocalAuthentication
+import PhotosUI
 
 struct ProfileView: View {
     @EnvironmentObject var revenueCatManager: RevenueCatManager
@@ -20,6 +21,8 @@ struct ProfileView: View {
     @State private var showPINVerification = false
     @State private var showSecurityAlert = false
     @State private var securityAlertMessage = ""
+    @State private var selectedPhotoItem: PhotosPickerItem?
+    @State private var isUploadingPhoto = false
 
     var body: some View {
         NavigationStack {
@@ -30,24 +33,58 @@ struct ProfileView: View {
                         .scaleEffect(1.5)
                 } else {
                     // Profile Image
-                    if let imageUrl = profile?.profileImageUrl, !imageUrl.isEmpty {
-                        AsyncImage(url: URL(string: imageUrl)) { image in
-                            image
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                        } placeholder: {
+                    ZStack(alignment: .bottomTrailing) {
+                        if let imageUrl = profile?.profileImageUrl, !imageUrl.isEmpty {
+                            AsyncImage(url: URL(string: imageUrl)) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                            } placeholder: {
+                                Image(systemName: "person.circle.fill")
+                                    .resizable()
+                                    .foregroundColor(.gray)
+                            }
+                            .frame(width: 120, height: 120)
+                            .clipShape(Circle())
+                        } else {
+                            // Placeholder for profile image
                             Image(systemName: "person.circle.fill")
                                 .resizable()
                                 .foregroundColor(.gray)
+                                .frame(width: 120, height: 120)
                         }
-                        .frame(width: 120, height: 120)
-                        .clipShape(Circle())
-                    } else {
-                        // Placeholder for profile image
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .foregroundColor(.gray)
-                            .frame(width: 120, height: 120)
+
+                        PhotosPicker(selection: $selectedPhotoItem, matching: .images) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.blue)
+                                    .frame(width: 36, height: 36)
+
+                                Image(systemName: "pencil")
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 16, weight: .semibold))
+                            }
+                        }
+                        .disabled(isUploadingPhoto)
+                        .offset(x: -5, y: -5)
+
+                        if isUploadingPhoto {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.blue)
+                                    .frame(width: 36, height: 36)
+
+                                ProgressView()
+                                    .tint(.white)
+                                    .scaleEffect(0.7)
+                            }
+                            .offset(x: -5, y: -5)
+                        }
+                    }
+                    .onChange(of: selectedPhotoItem) { oldValue, newValue in
+                        Task {
+                            await uploadProfilePhoto()
+                        }
                     }
 
                     // Name editing section
@@ -434,5 +471,75 @@ struct ProfileView: View {
             securityAlertMessage = "No PIN is set. Please set up a PIN first."
             showSecurityAlert = true
         }
+    }
+
+    // MARK: - Profile Photo Upload
+
+    func uploadProfilePhoto() async {
+        guard let photoItem = selectedPhotoItem else { return }
+
+        isUploadingPhoto = true
+        errorMessage = nil
+
+        do {
+            // Get the current user
+            let user = try await supabase.auth.user()
+
+            // Load the image data
+            guard let imageData = try await photoItem.loadTransferable(type: Data.self) else {
+                errorMessage = "Failed to load image"
+                isUploadingPhoto = false
+                return
+            }
+
+            // Compress the image if needed
+            guard let image = UIImage(data: imageData),
+                  let compressedData = image.jpegData(compressionQuality: 0.8) else {
+                errorMessage = "Failed to process image"
+                isUploadingPhoto = false
+                return
+            }
+
+            // Create a unique filename
+            let fileName = "\(user.id.uuidString)/profile_\(UUID().uuidString).jpg"
+
+            // Upload to Supabase Storage
+            try await supabase.storage
+                .from("profile-images")
+                .upload(
+                    fileName,
+                    data: compressedData,
+                    options: FileOptions(
+                        cacheControl: "3600",
+                        contentType: "image/jpeg",
+                        upsert: false
+                    )
+                )
+
+            // Get the public URL
+            let publicURL = try supabase.storage
+                .from("profile-images")
+                .getPublicURL(path: fileName)
+
+            // Update profile in database
+            try await supabase
+                .from("profiles")
+                .update(["profile_image_url": publicURL.absoluteString])
+                .eq("id", value: user.id.uuidString)
+                .execute()
+
+            // Update local profile
+            var updatedProfile = profile
+            updatedProfile?.profileImageUrl = publicURL.absoluteString
+            profile = updatedProfile
+
+            selectedPhotoItem = nil
+
+        } catch {
+            errorMessage = "Failed to upload photo: \(error.localizedDescription)"
+            print("Photo upload error: \(error)")
+        }
+
+        isUploadingPhoto = false
     }
 }
