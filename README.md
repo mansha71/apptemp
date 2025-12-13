@@ -152,6 +152,42 @@ is_favorite = TRUE;
 CREATE INDEX idx_quotes_categories ON quotes USING GIN(categories);
 ```
 
+#### For account delete
+```sql
+-- Function to allow users to delete their own account
+-- Run this in your Supabase SQL Editor
+
+-- This function allows authenticated users to delete their own account
+CREATE OR REPLACE FUNCTION delete_user()
+RETURNS void
+LANGUAGE plpgsql
+SECURITY DEFINER
+AS $$
+DECLARE
+  user_id uuid;
+BEGIN
+  -- Get the current user's ID
+  user_id := auth.uid();
+
+  -- Check if user is authenticated
+  IF user_id IS NULL THEN
+    RAISE EXCEPTION 'Not authenticated';
+  END IF;
+
+  -- Delete the user from auth.users
+  -- This will cascade delete related records if CASCADE is set up
+  DELETE FROM auth.users WHERE id = user_id;
+END;
+$$;
+
+-- Grant execute permission to authenticated users
+GRANT EXECUTE ON FUNCTION delete_user() TO authenticated;
+
+-- Optional: Add a comment to document the function
+COMMENT ON FUNCTION delete_user() IS 'Allows authenticated users to delete their own account and all associated data';
+
+```
+
 ## 6- Verify all the Apple Bundle ID and everything and sync them properly.
 
 ## 7- Add RLS Policies for Supabase Storage
