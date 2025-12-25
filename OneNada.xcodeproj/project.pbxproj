@@ -19,7 +19,7 @@
 		C180207B2EDC1E8C00DC8605 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = C180207A2EDC1E8C00DC8605 /* Supabase */; };
 		C18B477D2EDC33450052B1E7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB35CE2EB29B4A004CDAA5 /* WidgetKit.framework */; };
 		C18B477E2EDC33450052B1E7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB35D02EB29B4A004CDAA5 /* SwiftUI.framework */; };
-		C18B478D2EDC33460052B1E7 /* SwipePhotosExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C18B478D2EDC33460052B1E7 /* OneNadaExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C18B477C2EDC33450052B1E7 /* OneNadaExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,35 +28,35 @@
 			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
-			remoteInfo = SwipePhotosExtensionExtension;
+			remoteInfo = OneNadaExtensionExtension;
 		};
 		C18020812EDC1E8C00DC8605 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
-			remoteInfo = SwipePhotosExtensionExtension;
+			remoteInfo = OneNadaExtensionExtension;
 		};
 		C18020842EDC1ED500DC8605 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
-			remoteInfo = SwipePhotosExtensionExtension;
+			remoteInfo = OneNadaExtensionExtension;
 		};
 		C18021402EDC24DD00DC8605 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
-			remoteInfo = SwipePhotosExtensionExtension;
+			remoteInfo = OneNadaExtensionExtension;
 		};
 		C18B478B2EDC33460052B1E7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = C1BB35A52EB2992B004CDAA5 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C18B477B2EDC33450052B1E7;
-			remoteInfo = SwipePhotosExtensionExtension;
+			remoteInfo = OneNadaExtensionExtension;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -67,7 +67,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				C18B478D2EDC33460052B1E7 /* SwipePhotosExtensionExtension.appex in Embed Foundation Extensions */,
+				C18B478D2EDC33460052B1E7 /* OneNadaExtensionExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -76,53 +76,22 @@
 
 /* Begin PBXFileReference section */
 		C16AF95F2EBE8482006B7747 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SwipePhotosExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		C1BB35AD2EB2992B004CDAA5 /* Swipe Photos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swipe Photos.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C18B477C2EDC33450052B1E7 /* OneNadaExtensionExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneNadaExtensionExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1BB35AD2EB2992B004CDAA5 /* OneNada.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OneNada.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1BB35CE2EB29B4A004CDAA5 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		C1BB35D02EB29B4A004CDAA5 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		C1BB35E42EB29B9A004CDAA5 /* SwipePhotosExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SwipePhotosExtensionExtension.entitlements; sourceTree = "<group>"; };
+		C1BB35E42EB29B9A004CDAA5 /* OneNadaExtensionExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OneNadaExtensionExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		9DBAF80F2EFCCB2600DAB843 /* Exceptions for "SwipePhotos" folder in "SwipePhotosExtensionExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				RevenueCatConfig.storekit,
-			);
-			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
-		};
-		C18B47912EDC33460052B1E7 /* Exceptions for "SwipePhotosExtension" folder in "SwipePhotosExtensionExtension" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
-		};
-		C1DFD6BB2EB7F1C600CDCC77 /* Exceptions for "SwipePhotos" folder in "SwipePhotos" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Info.plist,
-			);
-			target = C1BB35AC2EB2992B004CDAA5 /* SwipePhotos */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C18B477F2EDC33450052B1E7 /* SwipePhotosExtension */ = {
+		C18B477F2EDC33450052B1E7 /* OneNadaExtension */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				C18B47912EDC33460052B1E7 /* Exceptions for "SwipePhotosExtension" folder in "SwipePhotosExtensionExtension" target */,
-			);
-			path = SwipePhotosExtension;
+			path = OneNadaExtension;
 			sourceTree = "<group>";
 		};
-		C1BB35AF2EB2992B004CDAA5 /* SwipePhotos */ = {
+		C1BB35AF2EB2992B004CDAA5 /* OneNada */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				C1DFD6BB2EB7F1C600CDCC77 /* Exceptions for "SwipePhotos" folder in "SwipePhotos" target */,
-				9DBAF80F2EFCCB2600DAB843 /* Exceptions for "SwipePhotos" folder in "SwipePhotosExtensionExtension" target */,
-			);
-			path = SwipePhotos;
+			path = OneNada;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -160,9 +129,9 @@
 		C1BB35A42EB2992B004CDAA5 = {
 			isa = PBXGroup;
 			children = (
-				C1BB35E42EB29B9A004CDAA5 /* SwipePhotosExtensionExtension.entitlements */,
-				C1BB35AF2EB2992B004CDAA5 /* SwipePhotos */,
-				C18B477F2EDC33450052B1E7 /* SwipePhotosExtension */,
+				C1BB35E42EB29B9A004CDAA5 /* OneNadaExtensionExtension.entitlements */,
+				C1BB35AF2EB2992B004CDAA5 /* OneNada */,
+				C18B477F2EDC33450052B1E7 /* OneNadaExtension */,
 				C1BB35CD2EB29B4A004CDAA5 /* Frameworks */,
 				C1BB35AE2EB2992B004CDAA5 /* Products */,
 			);
@@ -171,8 +140,8 @@
 		C1BB35AE2EB2992B004CDAA5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C1BB35AD2EB2992B004CDAA5 /* Swipe Photos.app */,
-				C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */,
+				C1BB35AD2EB2992B004CDAA5 /* OneNada.app */,
+				C18B477C2EDC33450052B1E7 /* OneNadaExtensionExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,9 +159,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */ = {
+		C18B477B2EDC33450052B1E7 /* OneNadaExtensionExtension */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C18B478E2EDC33460052B1E7 /* Build configuration list for PBXNativeTarget "SwipePhotosExtensionExtension" */;
+			buildConfigurationList = C18B478E2EDC33460052B1E7 /* Build configuration list for PBXNativeTarget "OneNadaExtensionExtension" */;
 			buildPhases = (
 				C18B47782EDC33450052B1E7 /* Sources */,
 				C18B47792EDC33450052B1E7 /* Frameworks */,
@@ -203,18 +172,18 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C18B477F2EDC33450052B1E7 /* SwipePhotosExtension */,
+				C18B477F2EDC33450052B1E7 /* OneNadaExtension */,
 			);
-			name = SwipePhotosExtensionExtension;
+			name = OneNadaExtensionExtension;
 			packageProductDependencies = (
 			);
-			productName = SwipePhotosExtensionExtension;
-			productReference = C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */;
+			productName = OneNadaExtensionExtension;
+			productReference = C18B477C2EDC33450052B1E7 /* OneNadaExtensionExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
-		C1BB35AC2EB2992B004CDAA5 /* SwipePhotos */ = {
+		C1BB35AC2EB2992B004CDAA5 /* OneNada */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C1BB35BA2EB2992C004CDAA5 /* Build configuration list for PBXNativeTarget "SwipePhotos" */;
+			buildConfigurationList = C1BB35BA2EB2992C004CDAA5 /* Build configuration list for PBXNativeTarget "OneNada" */;
 			buildPhases = (
 				C1BB35A92EB2992B004CDAA5 /* Sources */,
 				C1BB35AA2EB2992B004CDAA5 /* Frameworks */,
@@ -231,9 +200,9 @@
 				C18B478C2EDC33460052B1E7 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				C1BB35AF2EB2992B004CDAA5 /* SwipePhotos */,
+				C1BB35AF2EB2992B004CDAA5 /* OneNada */,
 			);
-			name = SwipePhotos;
+			name = OneNada;
 			packageProductDependencies = (
 				C18020682EDC1E8C00DC8605 /* ReceiptParser */,
 				C180206A2EDC1E8C00DC8605 /* RevenueCat */,
@@ -245,8 +214,8 @@
 				C18020782EDC1E8C00DC8605 /* Storage */,
 				C180207A2EDC1E8C00DC8605 /* Supabase */,
 			);
-			productName = SwipePhotos;
-			productReference = C1BB35AD2EB2992B004CDAA5 /* Swipe Photos.app */;
+			productName = OneNada;
+			productReference = C1BB35AD2EB2992B004CDAA5 /* OneNada.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -267,7 +236,7 @@
 					};
 				};
 			};
-			buildConfigurationList = C1BB35A82EB2992B004CDAA5 /* Build configuration list for PBXProject "SwipePhotos" */;
+			buildConfigurationList = C1BB35A82EB2992B004CDAA5 /* Build configuration list for PBXProject "OneNada" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -285,8 +254,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				C1BB35AC2EB2992B004CDAA5 /* SwipePhotos */,
-				C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */,
+				C1BB35AC2EB2992B004CDAA5 /* OneNada */,
+				C18B477B2EDC33450052B1E7 /* OneNadaExtensionExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -328,27 +297,27 @@
 /* Begin PBXTargetDependency section */
 		C18020362EDC1DCC00DC8605 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			target = C18B477B2EDC33450052B1E7 /* OneNadaExtensionExtension */;
 			targetProxy = C18020352EDC1DCC00DC8605 /* PBXContainerItemProxy */;
 		};
 		C18020822EDC1E8C00DC8605 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			target = C18B477B2EDC33450052B1E7 /* OneNadaExtensionExtension */;
 			targetProxy = C18020812EDC1E8C00DC8605 /* PBXContainerItemProxy */;
 		};
 		C18020852EDC1ED500DC8605 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			target = C18B477B2EDC33450052B1E7 /* OneNadaExtensionExtension */;
 			targetProxy = C18020842EDC1ED500DC8605 /* PBXContainerItemProxy */;
 		};
 		C18021412EDC24DD00DC8605 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			target = C18B477B2EDC33450052B1E7 /* OneNadaExtensionExtension */;
 			targetProxy = C18021402EDC24DD00DC8605 /* PBXContainerItemProxy */;
 		};
 		C18B478C2EDC33460052B1E7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+			target = C18B477B2EDC33450052B1E7 /* OneNadaExtensionExtension */;
 			targetProxy = C18B478B2EDC33460052B1E7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -362,9 +331,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3HY3V85QV3;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwipePhotosExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SwipePhotosExtension;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OneNadaExtension-Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneNadaExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -393,9 +362,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3HY3V85QV3;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwipePhotosExtension/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = SwipePhotosExtension;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OneNadaExtension-Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = OneNadaExtension;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.1;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -546,14 +515,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SwipePhotos/SwipePhotos.entitlements;
+				CODE_SIGN_ENTITLEMENTS = OneNada/OneNada.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3HY3V85QV3;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwipePhotos/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Swipe Photos";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OneNada-Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "OneNada";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "We use Face ID to securely authenticate your access to the app and protect your personal photos and data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -568,7 +537,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manan.OneNada.app;
-				PRODUCT_NAME = "Swipe Photos";
+				PRODUCT_NAME = "OneNada";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -584,14 +553,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = SwipePhotos/SwipePhotos.entitlements;
+				CODE_SIGN_ENTITLEMENTS = OneNada/OneNada.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3HY3V85QV3;
 				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SwipePhotos/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Swipe Photos";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = OneNada-Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "OneNada";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSFaceIDUsageDescription = "We use Face ID to securely authenticate your access to the app and protect your personal photos and data";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -606,7 +575,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.manan.OneNada.app;
-				PRODUCT_NAME = "Swipe Photos";
+				PRODUCT_NAME = "OneNada";
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
@@ -620,7 +589,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		C18B478E2EDC33460052B1E7 /* Build configuration list for PBXNativeTarget "SwipePhotosExtensionExtension" */ = {
+		C18B478E2EDC33460052B1E7 /* Build configuration list for PBXNativeTarget "OneNadaExtensionExtension" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C18B478F2EDC33460052B1E7 /* Debug */,
@@ -629,7 +598,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1BB35A82EB2992B004CDAA5 /* Build configuration list for PBXProject "SwipePhotos" */ = {
+		C1BB35A82EB2992B004CDAA5 /* Build configuration list for PBXProject "OneNada" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1BB35B82EB2992C004CDAA5 /* Debug */,
@@ -638,7 +607,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C1BB35BA2EB2992C004CDAA5 /* Build configuration list for PBXNativeTarget "SwipePhotos" */ = {
+		C1BB35BA2EB2992C004CDAA5 /* Build configuration list for PBXNativeTarget "OneNada" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C1BB35BB2EB2992C004CDAA5 /* Debug */,

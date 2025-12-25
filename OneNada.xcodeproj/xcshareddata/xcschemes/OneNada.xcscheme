@@ -16,9 +16,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1BB35AC2EB2992B004CDAA5"
-               BuildableName = "Swipe Photos.app"
-               BlueprintName = "SwipePhotos"
-               ReferencedContainer = "container:SwipePhotos.xcodeproj">
+               BuildableName = "OneNada.app"
+               BlueprintName = "OneNada"
+               ReferencedContainer = "container:OneNada.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,13 +45,13 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1BB35AC2EB2992B004CDAA5"
-            BuildableName = "Swipe Photos.app"
-            BlueprintName = "SwipePhotos"
-            ReferencedContainer = "container:SwipePhotos.xcodeproj">
+            BuildableName = "OneNada.app"
+            BlueprintName = "OneNada"
+            ReferencedContainer = "container:OneNada.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <StoreKitConfigurationFileReference
-         identifier = "../../SwipePhotos/RevenueCatConfig.storekit">
+         identifier = "../../OneNada/RevenueCatConfig.storekit">
       </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
@@ -65,9 +65,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1BB35AC2EB2992B004CDAA5"
-            BuildableName = "Swipe Photos.app"
-            BlueprintName = "SwipePhotos"
-            ReferencedContainer = "container:SwipePhotos.xcodeproj">
+            BuildableName = "OneNada.app"
+            BlueprintName = "OneNada"
+            ReferencedContainer = "container:OneNada.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

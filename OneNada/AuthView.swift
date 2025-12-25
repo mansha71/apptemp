@@ -12,7 +12,7 @@ struct AuthView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            Text("Welcome to SwipePhotos")
+            Text("Welcome to OneNada")
                 .font(.title)
                 .fontWeight(.bold)
             

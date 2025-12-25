@@ -1,6 +1,6 @@
 //
 //  PaywallView.swift
-//  SwipePhotos
+//  OneNada
 //
 //  Created by Samik Choudhury on 08/11/25.
 //

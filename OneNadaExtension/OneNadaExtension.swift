@@ -59,7 +59,7 @@ struct PhotoProvider: @MainActor TimelineProvider {
 }
 
 // MARK: - Widget View
-struct SwipePhotosView: View {
+struct OneNadaView: View {
     let entry: PhotoEntry
     @Environment(\.widgetFamily) var widgetFamily
     
@@ -67,23 +67,23 @@ struct SwipePhotosView: View {
         switch widgetFamily {
         // Home Screen widgets
         case .systemSmall, .systemMedium, .systemLarge:
-            HomeScreenSwipePhotosView(entry: entry)
+            HomeScreenOneNadaView(entry: entry)
             
         // Lock Screen widgets
         case .accessoryInline:
-            InlineSwipePhotosView(entry: entry)
+            InlineOneNadaView(entry: entry)
         case .accessoryCircular:
-            CircularSwipePhotosView(entry: entry)
+            CircularOneNadaView(entry: entry)
         case .accessoryRectangular:
-            RectangularSwipePhotosView(entry: entry)
+            RectangularOneNadaView(entry: entry)
         default:
-            HomeScreenSwipePhotosView(entry: entry)
+            HomeScreenOneNadaView(entry: entry)
         }
     }
 }
 
 // MARK: - Home Screen Widget View
-struct HomeScreenSwipePhotosView: View {
+struct HomeScreenOneNadaView: View {
     let entry: PhotoEntry
 
     var body: some View {
@@ -92,7 +92,7 @@ struct HomeScreenSwipePhotosView: View {
             HStack {
                 Image(systemName: "photo.stack.fill")
                     .foregroundColor(.blue)
-                Text("Swipe Photos")
+                Text("OneNada")
                     .font(.caption)
                     .fontWeight(.semibold)
                 Spacer()
@@ -132,7 +132,7 @@ struct HomeScreenSwipePhotosView: View {
 }
 
 // MARK: - Lock Screen Widget Views
-struct InlineSwipePhotosView: View {
+struct InlineOneNadaView: View {
     let entry: PhotoEntry
 
     var body: some View {
@@ -146,7 +146,7 @@ struct InlineSwipePhotosView: View {
     }
 }
 
-struct CircularSwipePhotosView: View {
+struct CircularOneNadaView: View {
     let entry: PhotoEntry
 
     var body: some View {
@@ -170,7 +170,7 @@ struct CircularSwipePhotosView: View {
     }
 }
 
-struct RectangularSwipePhotosView: View {
+struct RectangularOneNadaView: View {
     let entry: PhotoEntry
 
     var body: some View {
@@ -178,7 +178,7 @@ struct RectangularSwipePhotosView: View {
             HStack {
                 Image(systemName: "photo.stack.fill")
                     .font(.caption)
-                Text("Swipe Photos")
+                Text("OneNada")
                     .font(.caption)
                     .fontWeight(.semibold)
                 Spacer()
@@ -201,14 +201,14 @@ struct RectangularSwipePhotosView: View {
 }
 
 // MARK: - Widget Configuration
-struct SwipePhotos: Widget {
-    let kind: String = "SwipePhotosWidget"
+struct OneNadaWidget: Widget {
+    let kind: String = "OneNadaWidget"
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: PhotoProvider()) { entry in
-            SwipePhotosView(entry: entry)
+            OneNadaView(entry: entry)
         }
-        .configurationDisplayName("Swipe Photos Widget")
+        .configurationDisplayName("OneNada Widget")
         .description("Displays your photos")
         .supportedFamilies([
             // Home Screen widgets
@@ -226,15 +226,15 @@ struct SwipePhotos: Widget {
 
 // MARK: - Widget Bundle
 @main
-struct SwipePhotosBundle: WidgetBundle {
+struct OneNadaBundle: WidgetBundle {
     var body: some Widget {
-        SwipePhotos()
+        OneNadaWidget()
     }
 }
 
 // MARK: - Preview
 #Preview(as: .systemLarge) {
-    SwipePhotos()
+    OneNadaWidget()
 } timeline: {
     PhotoEntry(
         date: Date(),
@@ -245,7 +245,7 @@ struct SwipePhotosBundle: WidgetBundle {
 }
 
 #Preview("Lock Screen Rectangular", as: .accessoryCircular) {
-    SwipePhotos()
+    OneNadaWidget()
 } timeline: {
     PhotoEntry(
         date: Date(),
