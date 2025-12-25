@@ -17,6 +17,22 @@ struct SubscriptionPaywallView: View {
         Group {
             if let offering = revenueCatManager.currentOffering {
                 PaywallView(offering: offering)
+                    .onPurchaseCompleted { customerInfo in
+                        // Successfully purchased - refresh subscription status and dismiss
+                        print("✅ Purchase completed successfully")
+                        Task {
+                            await revenueCatManager.checkSubscriptionStatus()
+                        }
+                        dismiss()
+                    }
+                    .onRestoreCompleted { customerInfo in
+                        // Successfully restored - refresh subscription status and dismiss
+                        print("✅ Restore completed successfully")
+                        Task {
+                            await revenueCatManager.checkSubscriptionStatus()
+                        }
+                        dismiss()
+                    }
             } else {
                 // Loading state while offerings are being fetched
                 VStack(spacing: 20) {
@@ -37,4 +53,3 @@ struct SubscriptionPaywallView: View {
     SubscriptionPaywallView()
         .environmentObject(RevenueCatManager.shared)
 }
-

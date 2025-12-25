@@ -13,7 +13,7 @@ class RevenueCatManager: NSObject, ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     
-    private let entitlementID = "OneNada Pro" // Your entitlement ID from dashboard
+    private let entitlementID = "plus" // Your entitlement ID from dashboard
     
     private override init() {
         super.init()
@@ -42,7 +42,6 @@ class RevenueCatManager: NSObject, ObservableObject {
     
     // MARK: - Check Subscription Status
     func checkSubscriptionStatus() async {
-        isLoading = true
         do {
             let customerInfo = try await Purchases.shared.customerInfo()
             self.customerInfo = customerInfo
@@ -59,7 +58,6 @@ class RevenueCatManager: NSObject, ObservableObject {
             errorMessage = error.localizedDescription
             isSubscribed = false
         }
-        isLoading = false
     }
     
     // MARK: - Load Offerings
