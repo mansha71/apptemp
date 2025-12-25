@@ -1,7 +1,6 @@
 import SwiftUI
 import AuthenticationServices
 import Supabase
-import GoogleSignIn
 import RevenueCat
 
 struct ProfileInsert: Codable {
@@ -60,33 +59,6 @@ struct AuthView: View {
             }
             .frame(height: 50)
             .signInWithAppleButtonStyle(.black)
-            
-            // Google Sign In Button
-            Button(action: {
-                Task {
-                    await handleGoogleSignIn()
-                }
-            }) {
-                HStack(spacing: 12) {
-                    Image(systemName: "globe")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 20, height: 20)
-                        .foregroundColor(.blue)
-                    
-                    Text("Sign in with Google")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.black)
-                    
-                    Spacer()
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 50)
-                .padding(.horizontal, 16)
-                .background(Color.white)
-                .border(Color.gray.opacity(0.3), width: 1)
-                .cornerRadius(8)
-            }
             
             if isLoading {
                 ProgressView()
@@ -171,54 +143,6 @@ struct AuthView: View {
         }
     }
     
-    // MARK: - Google Sign In
-    @MainActor
-    private func handleGoogleSignIn() async {
-        isLoading = true
-        defer { isLoading = false }
-        
-        do {
-            guard let clientID = Bundle.main.infoDictionary?["GIDClientID"] as? String else {
-                errorMessage = "Google Client ID not configured"
-                return
-            }
-            
-            GIDSignIn.sharedInstance.configuration = GIDConfiguration(clientID: clientID)
-            
-            guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-                  let rootViewController = windowScene.windows.first?.rootViewController else {
-                errorMessage = "Unable to get view controller"
-                return
-            }
-            
-            let result = try await GIDSignIn.sharedInstance.signIn(
-                withPresenting: rootViewController
-            )
-            
-            guard let idToken = result.user.idToken?.tokenString else {
-                errorMessage = "Unable to extract identity token from Google"
-                return
-            }
-            
-            let accessToken = result.user.accessToken.tokenString
-            
-            try await supabase.auth.signInWithIdToken(
-                credentials: OpenIDConnectCredentials(
-                    provider: .google,
-                    idToken: idToken,
-                    accessToken: accessToken
-                )
-            )
-            
-            // Update user profile with data from Google
-            await updateGoogleUserProfile(googleUser: result.user)
-            
-        } catch {
-            errorMessage = "Google sign in failed: \(error.localizedDescription)"
-            print("Google sign in failed: \(error.localizedDescription)")
-        }
-    }
-    
     // MARK: - Helper Methods
     private func handlePostSignIn() async {
         do {
@@ -241,16 +165,10 @@ struct AuthView: View {
     @MainActor
     private func updateAppleUserProfile(credential: ASAuthorizationAppleIDCredential) async {
         await handlePostSignIn()
-        await ensureProfileExists(credential: credential, googleUser: nil)
+        await ensureProfileExists(credential: credential)
     }
     
-    @MainActor
-    private func updateGoogleUserProfile(googleUser: GIDGoogleUser) async {
-        await handlePostSignIn()
-        await ensureProfileExists(credential: nil, googleUser: googleUser)
-    }
-    
-    private func ensureProfileExists(credential: ASAuthorizationAppleIDCredential? = nil, googleUser: GIDGoogleUser? = nil) async {
+    private func ensureProfileExists(credential: ASAuthorizationAppleIDCredential? = nil) async {
         do {
             let currentUser = try await supabase.auth.user()
             print("Checking profile for user: \(currentUser.id.uuidString)")
@@ -264,7 +182,7 @@ struct AuthView: View {
             
             if existingProfiles.isEmpty {
                 print("No profile found, creating one...")
-                await createProfileManually(user: currentUser, credential: credential, googleUser: googleUser)
+                await createProfileManually(user: currentUser, credential: credential)
             } else {
                 print("Profile already exists")
             }
@@ -274,10 +192,9 @@ struct AuthView: View {
         }
     }
     
-    private func createProfileManually(user: User, credential: ASAuthorizationAppleIDCredential? = nil, googleUser: GIDGoogleUser? = nil) async {
+    private func createProfileManually(user: User, credential: ASAuthorizationAppleIDCredential? = nil) async {
         do {
             var name: String? = nil
-            var profileImageUrl: String? = nil
             
             if let credential = credential, let fullName = credential.fullName {
                 var nameParts: [String] = []
@@ -296,18 +213,11 @@ struct AuthView: View {
                 }
             }
             
-            if let googleUser = googleUser, let profile = googleUser.profile {
-                name = profile.name
-                if profile.hasImage, let imageUrl = profile.imageURL(withDimension: 200) {
-                    profileImageUrl = imageUrl.absoluteString
-                }
-            }
-            
             let newProfile = ProfileInsert(
                 id: user.id.uuidString,
                 email: user.email ?? "",
                 name: name,
-                profileImageUrl: profileImageUrl
+                profileImageUrl: nil
             )
             
             try await supabase

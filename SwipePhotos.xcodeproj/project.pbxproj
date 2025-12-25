@@ -17,8 +17,6 @@
 		C18020772EDC1E8C00DC8605 /* Realtime in Frameworks */ = {isa = PBXBuildFile; productRef = C18020762EDC1E8C00DC8605 /* Realtime */; };
 		C18020792EDC1E8C00DC8605 /* Storage in Frameworks */ = {isa = PBXBuildFile; productRef = C18020782EDC1E8C00DC8605 /* Storage */; };
 		C180207B2EDC1E8C00DC8605 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = C180207A2EDC1E8C00DC8605 /* Supabase */; };
-		C180207D2EDC1E8C00DC8605 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C180207C2EDC1E8C00DC8605 /* GoogleSignIn */; };
-		C180207F2EDC1E8C00DC8605 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C180207E2EDC1E8C00DC8605 /* GoogleSignInSwift */; };
 		C18B477D2EDC33450052B1E7 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB35CE2EB29B4A004CDAA5 /* WidgetKit.framework */; };
 		C18B477E2EDC33450052B1E7 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C1BB35D02EB29B4A004CDAA5 /* SwiftUI.framework */; };
 		C18B478D2EDC33460052B1E7 /* SwipePhotosExtensionExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = C18B477C2EDC33450052B1E7 /* SwipePhotosExtensionExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -86,6 +84,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		9DBAF80F2EFCCB2600DAB843 /* Exceptions for "SwipePhotos" folder in "SwipePhotosExtensionExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				RevenueCatConfig.storekit,
+			);
+			target = C18B477B2EDC33450052B1E7 /* SwipePhotosExtensionExtension */;
+		};
 		C18B47912EDC33460052B1E7 /* Exceptions for "SwipePhotosExtension" folder in "SwipePhotosExtensionExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -115,6 +120,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				C1DFD6BB2EB7F1C600CDCC77 /* Exceptions for "SwipePhotos" folder in "SwipePhotos" target */,
+				9DBAF80F2EFCCB2600DAB843 /* Exceptions for "SwipePhotos" folder in "SwipePhotosExtensionExtension" target */,
 			);
 			path = SwipePhotos;
 			sourceTree = "<group>";
@@ -140,8 +146,6 @@
 				C18020692EDC1E8C00DC8605 /* ReceiptParser in Frameworks */,
 				C16AF9602EBE8482006B7747 /* StoreKit.framework in Frameworks */,
 				C18020712EDC1E8C00DC8605 /* Auth in Frameworks */,
-				C180207F2EDC1E8C00DC8605 /* GoogleSignInSwift in Frameworks */,
-				C180207D2EDC1E8C00DC8605 /* GoogleSignIn in Frameworks */,
 				C180206B2EDC1E8C00DC8605 /* RevenueCat in Frameworks */,
 				C18020752EDC1E8C00DC8605 /* PostgREST in Frameworks */,
 				C18020732EDC1E8C00DC8605 /* Functions in Frameworks */,
@@ -240,8 +244,6 @@
 				C18020762EDC1E8C00DC8605 /* Realtime */,
 				C18020782EDC1E8C00DC8605 /* Storage */,
 				C180207A2EDC1E8C00DC8605 /* Supabase */,
-				C180207C2EDC1E8C00DC8605 /* GoogleSignIn */,
-				C180207E2EDC1E8C00DC8605 /* GoogleSignInSwift */,
 			);
 			productName = SwipePhotos;
 			productReference = C1BB35AD2EB2992B004CDAA5 /* Swipe Photos.app */;
@@ -277,7 +279,6 @@
 			packageReferences = (
 				C18020652EDC1E6400DC8605 /* XCRemoteSwiftPackageReference "purchases-ios-spm" */,
 				C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */,
-				C18020672EDC1E8500DC8605 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C1BB35AE2EB2992B004CDAA5 /* Products */;
@@ -665,14 +666,6 @@
 				minimumVersion = 2.5.1;
 			};
 		};
-		C18020672EDC1E8500DC8605 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -720,16 +713,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C18020662EDC1E7100DC8605 /* XCRemoteSwiftPackageReference "supabase-swift" */;
 			productName = Supabase;
-		};
-		C180207C2EDC1E8C00DC8605 /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C18020672EDC1E8500DC8605 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		C180207E2EDC1E8C00DC8605 /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C18020672EDC1E8500DC8605 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -14,17 +14,7 @@
 				<string>io.supabase.swipephotos</string>
 			</array>
 		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>com.googleusercontent.apps.991467204739-kkr2g2n65bobpjak05gi4rosvp16vk7k</string>
-			</array>
-		</dict>
 	</array>
-	<key>GIDClientID</key>
-	<string>991467204739-kkr2g2n65bobpjak05gi4rosvp16vk7k.apps.googleusercontent.com</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>

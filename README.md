@@ -9,7 +9,7 @@
 ---
 
 ## This comes with- 
-- 1/ Login using Apple and Google using Supabase
+- 1/ Login using Apple using Supabase
 - 2/ Widget which you can customise
 - 3/ Revenue Cat Payments
 - 4/ App Lock in-built (FACE ID & PIN)
@@ -30,11 +30,7 @@ https://www.youtube.com/watch?v=QEqOaOYHOYU&t=206s
 
 https://www.youtube.com/watch?v=E1j70_Up6aU
 
-## 3- Setup Google Sign-in: Allow Google sign in and setup Google console
-
-https://www.youtube.com/watch?v=8QGghYtaX04
-
-## 4- For RevenueCat setup watch these 2 videos:
+## 3- For RevenueCat setup watch these 2 videos:
 
 - 1/ RevenueCat Dashboard setup-
 
@@ -44,7 +40,7 @@ https://www.youtube.com/watch?v=X6xesg7YrU0
 
 https://www.youtube.com/watch?v=8LA1O_ykskA
 
-## 5- Setup SQL: Create fresh database setup
+## 4- Setup SQL: Create fresh database setup
 
 Copy and paste these SQL commands in your Supabase SQL Editor:
 
@@ -188,9 +184,9 @@ COMMENT ON FUNCTION delete_user() IS 'Allows authenticated users to delete their
 
 ```
 
-## 6- Verify all the Apple Bundle ID and everything and sync them properly.
+## 5- Verify all the Apple Bundle ID and everything and sync them properly.
 
-## 7- Add RLS Policies for Supabase Storage
+## 6- Add RLS Policies for Supabase Storage
 - Create Bucket 'profile-images'
 - Add this check to Supabase storage in new policy
 
@@ -200,10 +196,10 @@ COMMENT ON FUNCTION delete_user() IS 'Allows authenticated users to delete their
 <img width="1185" height="814" alt="Screenshot 2025-12-02 at 22 38 20" src="https://github.com/user-attachments/assets/1231e589-227f-4bac-a65f-e4578d189959" />
 
 
-## 8- Landing Page (starter kit)
+## 7- Landing Page (starter kit)
  - [Get the Repo](https://github.com/proSamik/ios-app-landing-page)
 
-## 9- App Store Screenshot Templates
+## 8- App Store Screenshot Templates
 - Export the screenshots in jpeg or jpg (PNG are not supported)
 - [Figma File](https://www.figma.com/design/UaBl3FLxrqklXVdtdNNHfg/500--App-store-screenshot-templates--for-Android-and-iOS-apps---Community-?node-id=2010-23&t=fhKvHWqXLPoirfvY-1)
 ---
