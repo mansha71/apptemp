@@ -17,59 +17,119 @@ class RevenueCatManager: NSObject, ObservableObject {
     
     private override init() {
         super.init()
+        print("")
+        print("🚀 ============ RevenueCatManager INIT ============")
+        print("🚀 isSubscribed initial value = \(isSubscribed)")
         // Set as delegate to listen for updates
         Purchases.shared.delegate = self
+        print("🚀 Set Purchases.shared.delegate")
         // Check initial subscription status for anonymous user
         Task {
+            print("🚀 Calling initial checkSubscriptionStatus...")
             await checkSubscriptionStatus()
+            print("🚀 Initial checkSubscriptionStatus done. isSubscribed = \(isSubscribed)")
         }
+        print("🚀 ================================================")
     }
     
     // MARK: - Setup with User ID
     /// Call this after user logs in with their Supabase user ID
     func setupWithUserID(_ userID: String) async {
-        // Set the user ID so RevenueCat knows who this is
-        Purchases.shared.logIn(userID) { customerInfo, _, error in
-            if let error = error {
-                print("Error setting RevenueCat user: \(error.localizedDescription)")
-            }
-        }
-        
-        // Load offerings immediately
-        await loadOfferings()
-        await checkSubscriptionStatus()
-    }
-    
-    // MARK: - Check Subscription Status
-    func checkSubscriptionStatus() async {
+        // IMPORTANT: Wait for logIn to complete before checking status
+        // Using withCheckedContinuation to convert callback to async/await
         do {
-            let customerInfo = try await Purchases.shared.customerInfo()
-            self.customerInfo = customerInfo
+            let customerInfo: CustomerInfo = try await withCheckedThrowingContinuation { continuation in
+                Purchases.shared.logIn(userID) { customerInfo, _, error in
+                    if let error = error {
+                        print("❌ Error setting RevenueCat user: \(error.localizedDescription)")
+                        continuation.resume(throwing: error)
+                    } else if let customerInfo = customerInfo {
+                        print("✅ RevenueCat logIn completed for user: \(userID)")
+                        continuation.resume(returning: customerInfo)
+                    } else {
+                        continuation.resume(throwing: NSError(domain: "RevenueCat", code: -1, userInfo: [NSLocalizedDescriptionKey: "No customer info returned"]))
+                    }
+                }
+            }
             
+            // Now that login is complete, update state with the returned customerInfo
+            self.customerInfo = customerInfo
+            self.isSubscribed = customerInfo.entitlements[entitlementID]?.isActive == true
+            print("📊 Subscription status after login: isSubscribed = \(self.isSubscribed)")
+            
+            // Log all entitlements for debugging
             for (key, entitlement) in customerInfo.entitlements.all {
                 print("  - \(key): active=\(entitlement.isActive)")
             }
             
+        } catch {
+            print("❌ Failed to log in to RevenueCat: \(error.localizedDescription)")
+            // On error, ensure user is NOT subscribed (fail-safe)
+            self.isSubscribed = false
+        }
+        
+        // Load offerings (can happen after login completes)
+        await loadOfferings()
+    }
+    
+    // MARK: - Check Subscription Status
+    func checkSubscriptionStatus() async {
+        print("")
+        print("🔍 ====== checkSubscriptionStatus START ======")
+        do {
+            print("🔍 Fetching customerInfo from Purchases.shared...")
+            let customerInfo = try await Purchases.shared.customerInfo()
+            self.customerInfo = customerInfo
+            
+            print("🔍 CustomerInfo received. Entitlements:")
+            if customerInfo.entitlements.all.isEmpty {
+                print("🔍   (no entitlements)")
+            }
+            for (key, entitlement) in customerInfo.entitlements.all {
+                print("🔍   - \(key): active=\(entitlement.isActive)")
+            }
+            
             // Check if user has the premium entitlement
-            self.isSubscribed = customerInfo.entitlements[entitlementID]?.isActive == true
+            let hasEntitlement = customerInfo.entitlements[entitlementID]?.isActive == true
+            print("🔍 Checking entitlementID '\(entitlementID)': isActive = \(hasEntitlement)")
+            self.isSubscribed = hasEntitlement
             errorMessage = nil
+            print("🔍 Set isSubscribed = \(self.isSubscribed)")
             
         } catch {
+            print("❌ checkSubscriptionStatus error: \(error.localizedDescription)")
             errorMessage = error.localizedDescription
             isSubscribed = false
         }
+        print("🔍 ====== checkSubscriptionStatus END ======")
+        print("")
     }
     
     // MARK: - Load Offerings
     func loadOfferings() async {
+        print("")
+        print("📦 ====== loadOfferings START ======")
         do {
+            print("📦 Fetching offerings from Purchases.shared...")
             let offerings = try await Purchases.shared.offerings()
             self.offerings = offerings
             self.currentOffering = offerings.current
-
+            
+            print("📦 Offerings received:")
+            print("📦   - All offerings count: \(offerings.all.count)")
+            if let current = offerings.current {
+                print("📦   - Current offering: \(current.identifier)")
+                print("📦   - Packages in current: \(current.availablePackages.map { $0.identifier })")
+            } else {
+                print("📦   - ⚠️ NO CURRENT OFFERING!")
+            }
+            
         } catch {
+            print("❌ loadOfferings error: \(error.localizedDescription)")
             errorMessage = error.localizedDescription
         }
+        print("📦 ====== loadOfferings END ======")
+        print("")
     }
     
     // MARK: - Make Purchase

@@ -1,8 +1,7 @@
 import SwiftUI
-import SwiftData
 
 @main
-struct SwipePhotosApp: App {
+struct OneNadaApp: App {
     init() {
         initializeRevenueCat()
         // Initialize theme manager
@@ -15,6 +14,5 @@ struct SwipePhotosApp: App {
                 .environmentObject(RevenueCatManager.shared)
                 .environmentObject(ThemeManager.shared)
         }
-        .modelContainer(SharedModelContainer.shared.container)
     }
 }
