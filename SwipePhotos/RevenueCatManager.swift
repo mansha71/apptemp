@@ -1,6 +1,7 @@
 import SwiftUI
 import RevenueCat
 import Combine
+import Supabase
 
 @MainActor
 class RevenueCatManager: NSObject, ObservableObject {
@@ -80,6 +81,8 @@ class RevenueCatManager: NSObject, ObservableObject {
             
             if !result.userCancelled {
                 await checkSubscriptionStatus()
+                // Update subscription start date in Supabase
+                await updateSubscriptionStartDate()
                 isLoading = false
                 return true
             } else {
@@ -90,6 +93,47 @@ class RevenueCatManager: NSObject, ObservableObject {
             errorMessage = error.localizedDescription
             isLoading = false
             return false
+        }
+    }
+    
+    // MARK: - Update Subscription Start Date
+    /// Updates the subscription_started_at field in Supabase when subscription is activated
+    func updateSubscriptionStartDate() async {
+        print("📝 updateSubscriptionStartDate() called")
+        do {
+            let user = try await supabase.auth.user()
+            print("📝 Got user ID: \(user.id.uuidString)")
+            
+            // Only update if not already set
+            let existingProfiles: [UserProfile] = try await supabase
+                .from("profiles")
+                .select()
+                .eq("id", value: user.id.uuidString)
+                .execute()
+                .value
+            
+            print("📝 Found \(existingProfiles.count) profile(s)")
+            
+            if let profile = existingProfiles.first {
+                print("📝 Profile subscriptionStartedAt: \(String(describing: profile.subscriptionStartedAt))")
+                
+                if profile.subscriptionStartedAt == nil {
+                    print("📝 Attempting to update subscription_started_at...")
+                    try await supabase
+                        .from("profiles")
+                        .update(["subscription_started_at": ISO8601DateFormatter().string(from: Date())])
+                        .eq("id", value: user.id.uuidString)
+                        .execute()
+                    
+                    print("✅ Subscription start date updated in Supabase")
+                } else {
+                    print("📝 subscription_started_at already set, skipping update")
+                }
+            } else {
+                print("⚠️ No profile found for user!")
+            }
+        } catch {
+            print("❌ Failed to update subscription start date: \(error)")
         }
     }
     

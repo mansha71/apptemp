@@ -5,6 +5,7 @@ import Supabase
 extension Notification.Name {
     static let userDidSignIn = Notification.Name("userDidSignIn")
     static let userDidSignOut = Notification.Name("userDidSignOut")
+    static let subscriptionDidComplete = Notification.Name("subscriptionDidComplete")
 }
 
 struct ContentView: View {
@@ -53,10 +54,8 @@ struct ContentView: View {
                 // Show onboarding/paywall for authenticated but non-subscribed users
                 OnboardingView(showPaywall: $showPaywall)
             } else {
-                // Show main app for subscribers with authentication gate
-                AuthenticationGateView {
-                    MainAppView(selectedTab: $selectedTab, modelContext: modelContext)
-                }
+                // Show main app for subscribers
+                MainAppView(selectedTab: $selectedTab, modelContext: modelContext)
             }
         }
         .preferredColorScheme(themeManager.currentTheme.colorScheme)
