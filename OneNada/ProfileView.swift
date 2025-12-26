@@ -7,8 +7,6 @@ struct ProfileView: View {
     @State var isLoading = false
     @State var profile: UserProfile?
     @State var errorMessage: String?
-    @AppStorage("hasUserReviewedApp") private var hasUserReviewedApp: Bool = false
-    @ObservedObject private var themeManager = ThemeManager.shared
     @State private var showDeleteAccountAlert = false
     @State private var isDeletingAccount = false
     @State private var subscriptionTimer: Timer?
@@ -34,19 +32,13 @@ struct ProfileView: View {
                                 
                                 // Main Timer Display
                                 Text(elapsedTime)
-                                    .font(.system(size: 48, weight: .bold, design: .monospaced))
-                                    .foregroundStyle(
-                                        LinearGradient(
-                                            colors: [.green, .mint],
-                                            startPoint: .leading,
-                                            endPoint: .trailing
-                                        )
-                                    )
+                                    .font(.system(size: 40, weight: .bold, design: .monospaced))
+                                    .foregroundColor(.primary)
                                 
                                 // Subscription Date
                                 HStack(spacing: 6) {
                                     Image(systemName: "checkmark.seal.fill")
-                                        .foregroundColor(.green)
+                                        .foregroundColor(.primary)
                                         .font(.subheadline)
                                     Text("Member since \(subscriptionDate.formatted(date: .long, time: .omitted))")
                                         .font(.subheadline)
@@ -55,39 +47,27 @@ struct ProfileView: View {
                                 
                                 // Member Number
                                 if let memberNumber = profile?.memberNumber {
-                                    Text("Member #\(memberNumber)")
-                                        .font(.title2)
-                                        .fontWeight(.bold)
-                                        .foregroundStyle(
-                                            LinearGradient(
-                                                colors: [.yellow, .orange],
-                                                startPoint: .leading,
-                                                endPoint: .trailing
-                                            )
-                                        )
-                                        .padding(.top, 4)
+                                    VStack(spacing: 4) {
+                                        Text("Member")
+                                            .font(.caption)
+                                            .fontWeight(.semibold)
+                                            .tracking(1)
+                                            .foregroundColor(.secondary)
+                                        
+                                        Text("#\(memberNumber)")
+                                            .font(.system(size: 48, weight: .black))
+                                            .foregroundColor(.primary)
+                                    }
+                                    .padding(.top, 8)
                                 }
+                                
+                                // MARK: - Level Progress Bar
+                                LevelProgressView(subscriptionDate: subscriptionDate)
+                                    .padding(.top, 16)
                             }
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 32)
                             .padding(.horizontal, 20)
-                            .background(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .fill(
-                                        LinearGradient(
-                                            colors: [
-                                                Color.green.opacity(0.15),
-                                                Color.mint.opacity(0.08)
-                                            ],
-                                            startPoint: .topLeading,
-                                            endPoint: .bottomTrailing
-                                        )
-                                    )
-                            )
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.green.opacity(0.3), lineWidth: 1)
-                            )
                             .onAppear {
                                 startSubscriptionTimer(from: subscriptionDate)
                             }
@@ -111,68 +91,9 @@ struct ProfileView: View {
                                 .padding()
                         }
 
-                        // Theme Selection
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text("Theme")
-                                .font(.headline)
-                                .padding(.top)
-                            
-                            HStack(spacing: 20) {
-                                ForEach(AppTheme.allCases, id: \.self) { theme in
-                                    VStack(spacing: 8) {
-                                        ZStack {
-                                            Circle()
-                                                .fill(themeManager.currentTheme == theme ? Color.blue.opacity(0.2) : Color(.systemGray5))
-                                                .frame(width: 60, height: 60)
-                                            
-                                            Image(systemName: theme.iconName)
-                                                .font(.system(size: 24))
-                                                .foregroundColor(themeManager.currentTheme == theme ? .blue : .primary)
-                                        }
-                                        
-                                        Text(theme.displayName)
-                                            .font(.caption)
-                                            .fontWeight(themeManager.currentTheme == theme ? .semibold : .regular)
-                                            .foregroundColor(themeManager.currentTheme == theme ? .blue : .secondary)
-                                    }
-                                    .frame(maxWidth: .infinity)
-                                    .onTapGesture {
-                                        withAnimation(.easeInOut(duration: 0.2)) {
-                                            themeManager.currentTheme = theme
-                                        }
-                                    }
-                                }
-                            }
-                            .padding()
-                            .background(Color(.systemGray6))
-                            .cornerRadius(10)
-                        }
+
 
                         Spacer()
-
-                        // App Store Review Button
-                        VStack {
-                            Button(hasUserReviewedApp ? "Thank you for reviewing!" : "Rate App on App Store") {
-                                if !hasUserReviewedApp {
-                                    openAppStoreReview()
-                                }
-                            }
-                            .buttonStyle(.bordered)
-                            .tint(hasUserReviewedApp ? .green : .blue)
-                            .disabled(hasUserReviewedApp)
-                            .onLongPressGesture {
-                                if hasUserReviewedApp {
-                                    // Reset review status (for testing)
-                                    hasUserReviewedApp = false
-                                }
-                            }
-                            
-                            if hasUserReviewedApp {
-                                Text("Long press to reset")
-                                    .font(.caption)
-                                    .foregroundColor(.gray)
-                            }
-                        }
 
                         Button("Sign out", role: .destructive) {
                             Task {
@@ -281,19 +202,6 @@ struct ProfileView: View {
 
         isLoading = false
     }
-    
-    private func openAppStoreReview() {
-        hasUserReviewedApp = true
-        
-        // TODO: Replace YOUR_APP_ID with your actual App Store ID when available
-        guard let url = URL(string: "https://apps.apple.com/app/id1234567890?action=write-review") else { 
-            if let fallbackURL = URL(string: "https://apps.apple.com/") {
-                UIApplication.shared.open(fallbackURL)
-            }
-            return 
-        }
-        UIApplication.shared.open(url)
-    }
 
     // MARK: - Account Deletion
 
@@ -336,18 +244,145 @@ struct ProfileView: View {
     
     private func updateElapsedTime(from startDate: Date) {
         let now = Date()
-        let components = Calendar.current.dateComponents([.day, .hour, .minute, .second], from: startDate, to: now)
+        let components = Calendar.current.dateComponents([.month, .day, .hour, .minute, .second], from: startDate, to: now)
         
+        let months = components.month ?? 0
         let days = components.day ?? 0
         let hours = components.hour ?? 0
         let minutes = components.minute ?? 0
         let seconds = components.second ?? 0
         
-        if days > 0 {
-            elapsedTime = String(format: "%dd %02d:%02d:%02d", days, hours, minutes, seconds)
-        } else {
-            elapsedTime = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        // Format: MM:DD:HH:MM:SS
+        elapsedTime = String(format: "%02d:%02d:%02d:%02d:%02d", months, days, hours, minutes, seconds)
+    }
+}
+
+// MARK: - Level Progress View
+struct LevelProgressView: View {
+    let subscriptionDate: Date
+    
+    // Level thresholds in days
+    private let levelThresholds: [Int] = [0, 30, 90, 180, 365, 730] // Level 1-6+
+    private let levelNames: [String] = ["Newcomer", "Explorer", "Dedicated", "Committed", "Veteran", "Legend"]
+    
+    private var daysSinceSubscription: Int {
+        Calendar.current.dateComponents([.day], from: subscriptionDate, to: Date()).day ?? 0
+    }
+    
+    private var currentLevel: Int {
+        for (index, threshold) in levelThresholds.enumerated().reversed() {
+            if daysSinceSubscription >= threshold {
+                return index + 1
+            }
         }
+        return 1
+    }
+    
+    private var currentLevelName: String {
+        let index = min(currentLevel - 1, levelNames.count - 1)
+        return levelNames[index]
+    }
+    
+    private var nextLevelThreshold: Int {
+        if currentLevel < levelThresholds.count {
+            return levelThresholds[currentLevel]
+        }
+        return levelThresholds.last ?? 730
+    }
+    
+    private var currentLevelThreshold: Int {
+        return levelThresholds[currentLevel - 1]
+    }
+    
+    private var progress: Double {
+        if currentLevel >= levelThresholds.count {
+            return 1.0 // Max level reached
+        }
+        let daysInCurrentLevel = daysSinceSubscription - currentLevelThreshold
+        let daysNeededForNextLevel = nextLevelThreshold - currentLevelThreshold
+        return min(1.0, Double(daysInCurrentLevel) / Double(daysNeededForNextLevel))
+    }
+    
+    private var daysUntilNextLevel: Int {
+        return max(0, nextLevelThreshold - daysSinceSubscription)
+    }
+    
+    var body: some View {
+        VStack(spacing: 12) {
+            // Level Header
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("LEVEL \(currentLevel)")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .tracking(1.5)
+                        .foregroundColor(.secondary)
+                    
+                    Text(currentLevelName)
+                        .font(.title2)
+                        .fontWeight(.black)
+                        .foregroundColor(.primary)
+                }
+                
+                Spacer()
+                
+                if currentLevel < levelThresholds.count {
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text("NEXT LEVEL")
+                            .font(.caption2)
+                            .fontWeight(.medium)
+                            .foregroundColor(.secondary)
+                        
+                        Text("\(daysUntilNextLevel) days")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundColor(.primary)
+                    }
+                } else {
+                    Text("MAX LEVEL")
+                        .font(.caption)
+                        .fontWeight(.bold)
+                        .foregroundColor(.primary)
+                }
+            }
+            
+            // Progress Bar
+            GeometryReader { geometry in
+                ZStack(alignment: .leading) {
+                    // Background
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color(.systemGray5))
+                        .frame(height: 16)
+                    
+                    // Progress
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(Color.primary)
+                        .frame(width: geometry.size.width * progress, height: 16)
+                        .animation(.easeInOut(duration: 0.5), value: progress)
+                }
+            }
+            .frame(height: 16)
+            
+            // Progress Labels
+            HStack {
+                Text("Level \(currentLevel)")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                if currentLevel < levelThresholds.count {
+                    Text("Level \(currentLevel + 1)")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                }
+            }
+        }
+        .padding(20)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(.systemGray6))
+        )
     }
 }
 

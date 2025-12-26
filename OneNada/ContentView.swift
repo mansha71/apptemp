@@ -11,7 +11,6 @@ extension Notification.Name {
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var revenueCatManager: RevenueCatManager
-    @EnvironmentObject var themeManager: ThemeManager
     @State private var selectedTab = 0
     @State private var showPaywall = false
     @State private var isAuthenticated = false
@@ -58,11 +57,10 @@ struct ContentView: View {
                 MainAppView(selectedTab: $selectedTab, modelContext: modelContext)
             }
         }
-        .preferredColorScheme(themeManager.currentTheme.colorScheme)
+        .preferredColorScheme(.light)
         .sheet(isPresented: $showPaywall) {
             SubscriptionPaywallView()
                 .environmentObject(revenueCatManager)
-                .environmentObject(themeManager)
         }
         .onReceive(NotificationCenter.default.publisher(for: .userDidSignOut)) { _ in
             isAuthenticated = false
