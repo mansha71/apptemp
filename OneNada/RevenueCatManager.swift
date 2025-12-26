@@ -13,6 +13,7 @@ class RevenueCatManager: NSObject, ObservableObject {
     @Published var currentOffering: Offering?
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var reservedMemberNumber: Int? = nil
     
     private let entitlementID = "plus" // Your entitlement ID from dashboard
     
@@ -143,14 +144,57 @@ class RevenueCatManager: NSObject, ObservableObject {
     }
     
     // MARK: - Assign Member Number
-    /// Assigns a random member number (1-10,000) to the user
+    /// Assigns the reserved member number to the user, or falls back to random assignment
     func assignMemberNumber() async {
         do {
-            let result: Int? = try await supabase.rpc("assign_member_number").execute().value
-            if let memberNumber = result {
-                print("✅ Assigned member number: #\(memberNumber)")
+            let user = try await supabase.auth.user()
+            
+            if let reservedNumber = reservedMemberNumber {
+                // Assign the reserved number
+                print("📝 Assigning reserved member number: #\(reservedNumber)")
+                
+                // Update the member_number_pool to mark as assigned
+                struct MemberPoolUpdate: Encodable {
+                    let is_available: Bool
+                    let assigned_to: String
+                    let assigned_at: String
+                }
+                
+                let poolUpdate = MemberPoolUpdate(
+                    is_available: false,
+                    assigned_to: user.id.uuidString,
+                    assigned_at: ISO8601DateFormatter().string(from: Date())
+                )
+                
+                try await supabase
+                    .from("member_number_pool")
+                    .update(poolUpdate)
+                    .eq("member_number", value: reservedNumber)
+                    .execute()
+                
+                // Update the user's profile with the member number
+                struct ProfileUpdate: Encodable {
+                    let member_number: Int
+                }
+                
+                try await supabase
+                    .from("profiles")
+                    .update(ProfileUpdate(member_number: reservedNumber))
+                    .eq("id", value: user.id.uuidString)
+                    .execute()
+                
+                print("✅ Assigned reserved member number: #\(reservedNumber)")
+                
+                // Clear the reserved number
+                reservedMemberNumber = nil
             } else {
-                print("⚠️ No member numbers available or already assigned")
+                // Fall back to random assignment via RPC
+                let result: Int? = try await supabase.rpc("assign_member_number").execute().value
+                if let memberNumber = result {
+                    print("✅ Assigned random member number: #\(memberNumber)")
+                } else {
+                    print("⚠️ No member numbers available or already assigned")
+                }
             }
         } catch {
             print("❌ Failed to assign member number: \(error)")
