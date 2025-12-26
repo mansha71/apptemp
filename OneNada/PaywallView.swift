@@ -17,9 +17,9 @@ struct SubscriptionPaywallView: View {
     var reservationStartTime: Date?
     var onTimerExpired: (() -> Void)?
     
-    private let reservationDuration: TimeInterval = 30 // 30 seconds
+    private let reservationDuration: TimeInterval = 20
     
-    @State private var remainingTime: Int = 30
+    @State private var remainingTime: Int = 20
     @State private var timer: Timer?
     
     var body: some View {

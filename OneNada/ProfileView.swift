@@ -76,12 +76,7 @@ struct ProfileView: View {
                             }
                         }
                         
-                        // Email
-                        if let email = profile?.email {
-                            Text(email)
-                                .font(.subheadline)
-                                .foregroundColor(.secondary)
-                        }
+
 
                         // Error message
                         if let error = errorMessage {

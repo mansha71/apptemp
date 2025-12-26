@@ -18,8 +18,13 @@ struct MemberNumberReservationView: View {
     @State private var errorMessage: String? = nil
     @State private var checkTask: Task<Void, Never>? = nil
     
+    // Spots remaining state
+    @State private var spotsRemaining: Int?
+    @State private var displayedSpots: Int = 10000
+    
     private let minNumber = 1
     private let maxNumber = 10000
+    private let animationDuration: Double = 1.5
     
     var body: some View {
         VStack(spacing: 30) {
@@ -41,10 +46,31 @@ struct MemberNumberReservationView: View {
             
             Spacer()
             
+            // Spots Remaining Display
+            VStack(spacing: 6) {
+                if spotsRemaining != nil {
+                    Text("\(displayedSpots)")
+                        .font(.system(size: 72, weight: .black))
+                        .foregroundColor(.primary)
+                        .contentTransition(.numericText())
+                    
+                    Text("spots remaining")
+                        .font(.title3)
+                        .fontWeight(.medium)
+                        .foregroundColor(.secondary)
+                } else {
+                    ProgressView()
+                    Text("Loading...")
+                        .font(.subheadline)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .padding(.bottom, 10)
+            
             // Title
             VStack(spacing: 12) {
                 Text("Choose Your Number")
-                    .font(.title)
+                    .font(.title2)
                     .fontWeight(.bold)
                     .foregroundColor(.primary)
                 
@@ -133,6 +159,54 @@ struct MemberNumberReservationView: View {
             .disabled(isAvailable != true)
         }
         .padding()
+        .task {
+            await fetchAvailableSpots()
+        }
+    }
+    
+    private func fetchAvailableSpots() async {
+        do {
+            let count: Int = try await supabase
+                .rpc("get_available_spots_count")
+                .execute()
+                .value
+            
+            print("✅ Found \(count) available spots")
+            
+            await MainActor.run {
+                spotsRemaining = count
+                animateCountdown(to: count)
+            }
+        } catch {
+            print("❌ Failed to fetch available spots: \(error)")
+            await MainActor.run {
+                spotsRemaining = maxNumber // Fallback
+                displayedSpots = maxNumber
+            }
+        }
+    }
+    
+    private func animateCountdown(to targetValue: Int) {
+        let startValue = maxNumber
+        let totalSteps = 60
+        let stepDuration = animationDuration / Double(totalSteps)
+        
+        displayedSpots = startValue
+        
+        for step in 0...totalSteps {
+            let delay = stepDuration * Double(step)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                let progress = Double(step) / Double(totalSteps)
+                let easedProgress = 1 - pow(1 - progress, 3) // Ease out cubic
+                
+                let currentValue = startValue - Int(Double(startValue - targetValue) * easedProgress)
+                
+                withAnimation(.easeOut(duration: 0.05)) {
+                    displayedSpots = currentValue
+                }
+            }
+        }
     }
     
     private var borderColor: Color {
