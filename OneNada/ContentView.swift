@@ -97,6 +97,7 @@ struct ContentView: View {
 struct OnboardingView: View {
     @Binding var showPaywall: Bool
     @EnvironmentObject var revenueCatManager: RevenueCatManager
+    @State private var spotsRemaining: Int?
     
     var body: some View {
         VStack(spacing: 30) {
@@ -119,15 +120,22 @@ struct OnboardingView: View {
             
             Spacer()
             
-            VStack(spacing: 12) {
+            VStack(spacing: 16) {
                 Text("Welcome to OneNada")
-                    .font(.title)
+                    .font(.largeTitle)
                     .fontWeight(.bold)
 
-                Text("Your journey to mindfulness starts here")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
+                if let spots = spotsRemaining {
+                    Text("There are \(spots) spots left")
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                } else {
+                    Text("Loading available spots...")
+                        .font(.title3)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                }
             }
             
             Spacer()
@@ -145,6 +153,28 @@ struct OnboardingView: View {
             }
         }
         .padding()
+        .task {
+            await fetchAvailableSpots()
+        }
+    }
+    
+    private func fetchAvailableSpots() async {
+        do {
+            // Use RPC function to get accurate count (avoids 1000 row limit)
+            let count: Int = try await supabase
+                .rpc("get_available_spots_count")
+                .execute()
+                .value
+            
+            print("✅ Found \(count) available spots")
+            
+            await MainActor.run {
+                spotsRemaining = count
+            }
+        } catch {
+            print("❌ Failed to fetch available spots: \(error)")
+            // Default to showing nothing if fetch fails
+        }
     }
 }
 

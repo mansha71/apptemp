@@ -20,21 +20,16 @@ struct AuthView: View {
                 Spacer()
                 
                 // MARK: - Welcome Section
-                VStack(spacing: 12) {
+                VStack(spacing: 8) {
                     Text("Welcome to")
-                        .font(.title3)
+                        .font(.title2)
                         .fontWeight(.light)
                         .foregroundColor(.secondary)
                     
                     Text("OneNada")
-                        .font(.system(size: 42, weight: .bold, design: .default))
-                        .tracking(2)
+                        .font(.system(size: 74, weight: .black, design: .default))
+                        .tracking(4)
                         .foregroundColor(.primary)
-                    
-                    Text("Your journey begins here")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .padding(.top, 4)
                 }
                 
                 Spacer()
