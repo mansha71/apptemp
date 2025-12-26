@@ -11,77 +11,125 @@ struct AuthView: View {
     @EnvironmentObject var revenueCatManager: RevenueCatManager
     
     var body: some View {
-        VStack(spacing: 20) {
-            Text("Welcome to OneNada")
-                .font(.title)
-                .fontWeight(.bold)
+        ZStack {
+            // Background
+            Color(.systemBackground)
+                .ignoresSafeArea()
             
-            if let errorMessage = errorMessage {
-                Text(errorMessage)
-                    .foregroundColor(.red)
-                    .font(.caption)
-                    .padding()
-                    .background(Color.red.opacity(0.1))
-                    .cornerRadius(8)
-            }
-            
-            // Apple Sign In Button
-            SignInWithAppleButton { request in
-                request.requestedScopes = [.email, .fullName]
-            } onCompletion: { result in
-                Task {
-                    await handleAppleSignIn(result)
-                }
-            }
-            .frame(height: 50)
-            .signInWithAppleButtonStyle(.black)
-            
-            if isLoading {
-                ProgressView()
-            }
-            
-            if isSignedIn {
+            VStack(spacing: 0) {
+                Spacer()
+                
+                // MARK: - Welcome Section
                 VStack(spacing: 12) {
-                    Text("Signed in!")
+                    Text("Welcome to")
+                        .font(.title3)
+                        .fontWeight(.light)
+                        .foregroundColor(.secondary)
+                    
+                    Text("OneNada")
+                        .font(.system(size: 42, weight: .bold, design: .default))
+                        .tracking(2)
+                        .foregroundColor(.primary)
+                    
+                    Text("Your journey begins here")
                         .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.green)
+                        .foregroundColor(.secondary)
+                        .padding(.top, 4)
+                }
+                
+                Spacer()
+                
+                // MARK: - Sign In Section
+                VStack(spacing: 20) {
+                    if let errorMessage = errorMessage {
+                        Text(errorMessage)
+                            .font(.caption)
+                            .foregroundColor(.primary)
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 12)
+                            .frame(maxWidth: .infinity)
+                            .background(
+                                RoundedRectangle(cornerRadius: 8)
+                                    .stroke(Color.primary.opacity(0.3), lineWidth: 1)
+                            )
+                    }
                     
-                    Text(user?.email ?? "User")
-                        .font(.caption)
-                    
-                    Button(action: {
+                    // Apple Sign In Button
+                    SignInWithAppleButton { request in
+                        request.requestedScopes = [.email, .fullName]
+                    } onCompletion: { result in
                         Task {
-                            do {
-                                try await supabase.auth.signOut()
-                                isSignedIn = false
-                                user = nil
-                                errorMessage = nil
-                                // Sign out from RevenueCat too
-                                await revenueCatManager.signOut()
-                                // Post sign-out notification
-                                NotificationCenter.default.post(name: .userDidSignOut, object: nil)
-                            } catch {
-                                errorMessage = "Sign out failed: \(error.localizedDescription)"
+                            await handleAppleSignIn(result)
+                        }
+                    }
+                    .frame(height: 56)
+                    .frame(maxWidth: .infinity)
+                    .signInWithAppleButtonStyle(.black)
+                    .cornerRadius(12)
+                    
+                    if isLoading {
+                        ProgressView()
+                            .tint(.primary)
+                            .padding(.top, 8)
+                    }
+                    
+                    if isSignedIn {
+                        VStack(spacing: 16) {
+                            HStack(spacing: 8) {
+                                Image(systemName: "checkmark.circle.fill")
+                                    .foregroundColor(.primary)
+                                Text("Signed in")
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                            }
+                            
+                            Text(user?.email ?? "User")
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                            
+                            Button(action: {
+                                Task {
+                                    do {
+                                        try await supabase.auth.signOut()
+                                        isSignedIn = false
+                                        user = nil
+                                        errorMessage = nil
+                                        await revenueCatManager.signOut()
+                                        NotificationCenter.default.post(name: .userDidSignOut, object: nil)
+                                    } catch {
+                                        errorMessage = "Sign out failed: \(error.localizedDescription)"
+                                    }
+                                }
+                            }) {
+                                Text("Sign Out")
+                                    .font(.subheadline)
+                                    .fontWeight(.medium)
+                                    .foregroundColor(.white)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
+                                    .background(Color.primary)
+                                    .cornerRadius(10)
                             }
                         }
-                    }) {
-                        Text("Sign Out")
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(Color.red)
-                            .cornerRadius(8)
+                        .padding(20)
+                        .background(
+                            RoundedRectangle(cornerRadius: 16)
+                                .fill(Color(.secondarySystemBackground))
+                        )
                     }
                 }
-                .padding()
-                .background(Color.gray.opacity(0.1))
-                .cornerRadius(8)
+                .padding(.horizontal, 32)
+                
+                Spacer()
+                    .frame(height: 60)
+                
+                // Footer text
+                Text("By continuing, you agree to our Terms of Service")
+                    .font(.caption2)
+                    .foregroundColor(.secondary.opacity(0.6))
+                    .padding(.bottom, 24)
             }
-            
-            Spacer()
         }
-        .padding()
     }
     
     // MARK: - Apple Sign In

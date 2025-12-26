@@ -119,16 +119,12 @@ struct OnboardingView: View {
             
             Spacer()
             
-            Image(systemName: "photo.stack.fill")
-                .font(.system(size: 60))
-                .foregroundColor(.blue)
-            
             VStack(spacing: 12) {
-                Text("Welcome to Swipe Photos")
+                Text("Welcome to OneNada")
                     .font(.title)
                     .fontWeight(.bold)
 
-                Text("Your private photo collection")
+                Text("Your journey to mindfulness starts here")
                     .font(.body)
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -139,12 +135,12 @@ struct OnboardingView: View {
             Button(action: {
                 showPaywall = true
             }) {
-                Text("Get Started")
+                Text("Become a Member")
                     .fontWeight(.semibold)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                    .frame(height: 56)
+                    .background(Color.primary)
+                    .foregroundColor(Color(.systemBackground))
                     .cornerRadius(12)
             }
         }

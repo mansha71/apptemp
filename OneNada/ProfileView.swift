@@ -17,51 +17,75 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack(spacing: 20) {
+                VStack(spacing: 24) {
                     if isLoading {
                         ProgressView()
                             .scaleEffect(1.5)
                     } else {
-                        // Profile Icon
-                        Image(systemName: "person.circle.fill")
-                            .resizable()
-                            .foregroundColor(.gray)
-                            .frame(width: 120, height: 120)
-
-                        // Email
-                        if let email = profile?.email {
-                            Text(email)
-                                .font(.title3)
-                                .fontWeight(.medium)
-                        }
-
-                        // Subscription Status & Timer
+                        // MARK: - Hero Subscription Timer
                         if let subscriptionDate = profile?.subscriptionStartedAt {
-                            VStack(spacing: 8) {
-                                HStack {
+                            VStack(spacing: 16) {
+                                // Header
+                                Text("YOUR JOURNEY")
+                                    .font(.caption)
+                                    .fontWeight(.bold)
+                                    .tracking(2)
+                                    .foregroundColor(.secondary)
+                                
+                                // Main Timer Display
+                                Text(elapsedTime)
+                                    .font(.system(size: 48, weight: .bold, design: .monospaced))
+                                    .foregroundStyle(
+                                        LinearGradient(
+                                            colors: [.green, .mint],
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                    )
+                                
+                                // Subscription Date
+                                HStack(spacing: 6) {
                                     Image(systemName: "checkmark.seal.fill")
                                         .foregroundColor(.green)
-                                    Text("Subscribed since \(subscriptionDate.formatted(date: .abbreviated, time: .omitted))")
+                                        .font(.subheadline)
+                                    Text("Member since \(subscriptionDate.formatted(date: .long, time: .omitted))")
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
-                                
-                                // Live timer showing subscription duration
-                                Text(elapsedTime)
-                                    .font(.system(.title2, design: .monospaced))
-                                    .fontWeight(.semibold)
-                                    .foregroundColor(.green)
                             }
-                            .padding(.horizontal)
-                            .padding(.vertical, 12)
-                            .background(Color.green.opacity(0.1))
-                            .cornerRadius(8)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 32)
+                            .padding(.horizontal, 20)
+                            .background(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [
+                                                Color.green.opacity(0.15),
+                                                Color.mint.opacity(0.08)
+                                            ],
+                                            startPoint: .topLeading,
+                                            endPoint: .bottomTrailing
+                                        )
+                                    )
+                            )
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 20)
+                                    .stroke(Color.green.opacity(0.3), lineWidth: 1)
+                            )
                             .onAppear {
                                 startSubscriptionTimer(from: subscriptionDate)
                             }
                             .onDisappear {
                                 subscriptionTimer?.invalidate()
                             }
+                        }
+                        
+                        // Email
+                        if let email = profile?.email {
+                            Text(email)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
                         }
 
                         // Error message
@@ -166,7 +190,8 @@ struct ProfileView: View {
                 }
             }
             .padding()
-            .navigationTitle("Profile")
+            .navigationTitle("OneNada")
+            .navigationBarTitleDisplayMode(.inline)
             .task {
                 await fetchProfile()
             }
