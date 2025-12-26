@@ -4,6 +4,7 @@ struct UserProfile: Codable, Identifiable {
     let id: UUID
     var email: String?
     var subscriptionStartedAt: Date?
+    var memberNumber: Int?
     let createdAt: Date?
     let updatedAt: Date?
 
@@ -11,6 +12,7 @@ struct UserProfile: Codable, Identifiable {
         case id
         case email
         case subscriptionStartedAt = "subscription_started_at"
+        case memberNumber = "member_number"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }

@@ -52,6 +52,21 @@ struct ProfileView: View {
                                         .font(.subheadline)
                                         .foregroundColor(.secondary)
                                 }
+                                
+                                // Member Number
+                                if let memberNumber = profile?.memberNumber {
+                                    Text("Member #\(memberNumber)")
+                                        .font(.title2)
+                                        .fontWeight(.bold)
+                                        .foregroundStyle(
+                                            LinearGradient(
+                                                colors: [.yellow, .orange],
+                                                startPoint: .leading,
+                                                endPoint: .trailing
+                                            )
+                                        )
+                                        .padding(.top, 4)
+                                }
                             }
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 32)

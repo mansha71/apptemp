@@ -29,16 +29,18 @@ class RevenueCatManager: NSObject, ObservableObject {
     // MARK: - Setup with User ID
     /// Call this after user logs in with their Supabase user ID
     func setupWithUserID(_ userID: String) async {
-        // Set the user ID so RevenueCat knows who this is
-        Purchases.shared.logIn(userID) { customerInfo, _, error in
-            if let error = error {
-                print("Error setting RevenueCat user: \(error.localizedDescription)")
-            }
+        // Log in to RevenueCat with user ID and wait for completion
+        do {
+            let (customerInfo, _) = try await Purchases.shared.logIn(userID)
+            self.customerInfo = customerInfo
+            self.isSubscribed = customerInfo.entitlements[entitlementID]?.isActive == true
+            print("✅ RevenueCat login successful, isSubscribed: \(isSubscribed)")
+        } catch {
+            print("❌ Error logging in to RevenueCat: \(error.localizedDescription)")
         }
         
-        // Load offerings immediately
+        // Load offerings
         await loadOfferings()
-        await checkSubscriptionStatus()
     }
     
     // MARK: - Check Subscription Status
@@ -126,6 +128,9 @@ class RevenueCatManager: NSObject, ObservableObject {
                         .execute()
                     
                     print("✅ Subscription start date updated in Supabase")
+                    
+                    // Assign a member number
+                    await assignMemberNumber()
                 } else {
                     print("📝 subscription_started_at already set, skipping update")
                 }
@@ -134,6 +139,21 @@ class RevenueCatManager: NSObject, ObservableObject {
             }
         } catch {
             print("❌ Failed to update subscription start date: \(error)")
+        }
+    }
+    
+    // MARK: - Assign Member Number
+    /// Assigns a random member number (1-10,000) to the user
+    func assignMemberNumber() async {
+        do {
+            let result: Int? = try await supabase.rpc("assign_member_number").execute().value
+            if let memberNumber = result {
+                print("✅ Assigned member number: #\(memberNumber)")
+            } else {
+                print("⚠️ No member numbers available or already assigned")
+            }
+        } catch {
+            print("❌ Failed to assign member number: \(error)")
         }
     }
     
