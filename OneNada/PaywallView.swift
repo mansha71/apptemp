@@ -82,6 +82,9 @@ struct SubscriptionPaywallView: View {
                             timer?.invalidate()
                             timer = nil
                             
+                            // Clear any reserved number - restored users already have a member number
+                            revenueCatManager.reservedMemberNumber = nil
+                            
                             print("✅ Restore completed successfully")
                             Task {
                                 await revenueCatManager.checkSubscriptionStatus()
