@@ -13,6 +13,7 @@ class RevenueCatManager: NSObject, ObservableObject {
     @Published var currentOffering: Offering?
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var reservedMemberNumber: Int? = nil
     
     private let entitlementID = "plus" // Your entitlement ID from dashboard
     
@@ -29,16 +30,18 @@ class RevenueCatManager: NSObject, ObservableObject {
     // MARK: - Setup with User ID
     /// Call this after user logs in with their Supabase user ID
     func setupWithUserID(_ userID: String) async {
-        // Set the user ID so RevenueCat knows who this is
-        Purchases.shared.logIn(userID) { customerInfo, _, error in
-            if let error = error {
-                print("Error setting RevenueCat user: \(error.localizedDescription)")
-            }
+        // Log in to RevenueCat with user ID and wait for completion
+        do {
+            let (customerInfo, _) = try await Purchases.shared.logIn(userID)
+            self.customerInfo = customerInfo
+            self.isSubscribed = customerInfo.entitlements[entitlementID]?.isActive == true
+            print("✅ RevenueCat login successful, isSubscribed: \(isSubscribed)")
+        } catch {
+            print("❌ Error logging in to RevenueCat: \(error.localizedDescription)")
         }
         
-        // Load offerings immediately
+        // Load offerings
         await loadOfferings()
-        await checkSubscriptionStatus()
     }
     
     // MARK: - Check Subscription Status
@@ -126,6 +129,9 @@ class RevenueCatManager: NSObject, ObservableObject {
                         .execute()
                     
                     print("✅ Subscription start date updated in Supabase")
+                    
+                    // Assign a member number
+                    await assignMemberNumber()
                 } else {
                     print("📝 subscription_started_at already set, skipping update")
                 }
@@ -134,6 +140,64 @@ class RevenueCatManager: NSObject, ObservableObject {
             }
         } catch {
             print("❌ Failed to update subscription start date: \(error)")
+        }
+    }
+    
+    // MARK: - Assign Member Number
+    /// Assigns the reserved member number to the user, or falls back to random assignment
+    func assignMemberNumber() async {
+        do {
+            let user = try await supabase.auth.user()
+            
+            if let reservedNumber = reservedMemberNumber {
+                // Assign the reserved number
+                print("📝 Assigning reserved member number: #\(reservedNumber)")
+                
+                // Update the member_number_pool to mark as assigned
+                struct MemberPoolUpdate: Encodable {
+                    let is_available: Bool
+                    let assigned_to: String
+                    let assigned_at: String
+                }
+                
+                let poolUpdate = MemberPoolUpdate(
+                    is_available: false,
+                    assigned_to: user.id.uuidString,
+                    assigned_at: ISO8601DateFormatter().string(from: Date())
+                )
+                
+                try await supabase
+                    .from("member_number_pool")
+                    .update(poolUpdate)
+                    .eq("member_number", value: reservedNumber)
+                    .execute()
+                
+                // Update the user's profile with the member number
+                struct ProfileUpdate: Encodable {
+                    let member_number: Int
+                }
+                
+                try await supabase
+                    .from("profiles")
+                    .update(ProfileUpdate(member_number: reservedNumber))
+                    .eq("id", value: user.id.uuidString)
+                    .execute()
+                
+                print("✅ Assigned reserved member number: #\(reservedNumber)")
+                
+                // Clear the reserved number
+                reservedMemberNumber = nil
+            } else {
+                // Fall back to random assignment via RPC
+                let result: Int? = try await supabase.rpc("assign_member_number").execute().value
+                if let memberNumber = result {
+                    print("✅ Assigned random member number: #\(memberNumber)")
+                } else {
+                    print("⚠️ No member numbers available or already assigned")
+                }
+            }
+        } catch {
+            print("❌ Failed to assign member number: \(error)")
         }
     }
     

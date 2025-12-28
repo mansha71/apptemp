@@ -17,9 +17,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C18B477B2EDC33450052B1E7"
-               BuildableName = "SwipePhotosExtensionExtension.appex"
-               BlueprintName = "SwipePhotosExtensionExtension"
-               ReferencedContainer = "container:SwipePhotos.xcodeproj">
+               BuildableName = "OneNadaExtensionExtension.appex"
+               BlueprintName = "OneNadaExtensionExtension"
+               ReferencedContainer = "container:OneNada.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,9 +31,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C1BB35AC2EB2992B004CDAA5"
-               BuildableName = "Swipe Photos.app"
-               BlueprintName = "SwipePhotos"
-               ReferencedContainer = "container:SwipePhotos.xcodeproj">
+               BuildableName = "OneNada.app"
+               BlueprintName = "OneNada"
+               ReferencedContainer = "container:OneNada.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -63,18 +63,18 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C18B477B2EDC33450052B1E7"
-            BuildableName = "SwipePhotosExtensionExtension.appex"
-            BlueprintName = "SwipePhotosExtensionExtension"
-            ReferencedContainer = "container:SwipePhotos.xcodeproj">
+            BuildableName = "OneNadaExtensionExtension.appex"
+            BlueprintName = "OneNadaExtensionExtension"
+            ReferencedContainer = "container:OneNada.xcodeproj">
          </BuildableReference>
       </RemoteRunnable>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1BB35AC2EB2992B004CDAA5"
-            BuildableName = "Swipe Photos.app"
-            BlueprintName = "SwipePhotos"
-            ReferencedContainer = "container:SwipePhotos.xcodeproj">
+            BuildableName = "OneNada.app"
+            BlueprintName = "OneNada"
+            ReferencedContainer = "container:OneNada.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <EnvironmentVariables>
@@ -108,9 +108,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C1BB35AC2EB2992B004CDAA5"
-            BuildableName = "Swipe Photos.app"
-            BlueprintName = "SwipePhotos"
-            ReferencedContainer = "container:SwipePhotos.xcodeproj">
+            BuildableName = "OneNada.app"
+            BlueprintName = "OneNada"
+            ReferencedContainer = "container:OneNada.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

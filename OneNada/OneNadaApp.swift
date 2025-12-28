@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 @main
-struct SwipePhotosApp: App {
+struct OneNadaApp: App {
     init() {
         initializeRevenueCat()
         // Initialize theme manager

@@ -11,12 +11,15 @@ extension Notification.Name {
 struct ContentView: View {
     @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var revenueCatManager: RevenueCatManager
-    @EnvironmentObject var themeManager: ThemeManager
     @State private var selectedTab = 0
     @State private var showPaywall = false
     @State private var isAuthenticated = false
     @State private var isRevenueCatSetup = false
     @State private var isCheckingAuth = true
+    
+    // Reservation state
+    @State private var reservedNumber: Int? = nil
+    @State private var reservationStartTime: Date? = nil
     
     var body: some View {
         Group {
@@ -51,22 +54,36 @@ struct ContentView: View {
                         .foregroundColor(.secondary)
                 }
             } else if !revenueCatManager.isSubscribed {
-                // Show onboarding/paywall for authenticated but non-subscribed users
-                OnboardingView(showPaywall: $showPaywall)
+                // Show member number reservation for authenticated but non-subscribed users
+                MemberNumberReservationView(
+                    showPaywall: $showPaywall,
+                    reservedNumber: $reservedNumber,
+                    reservationStartTime: $reservationStartTime
+                )
             } else {
                 // Show main app for subscribers
                 MainAppView(selectedTab: $selectedTab, modelContext: modelContext)
             }
         }
-        .preferredColorScheme(themeManager.currentTheme.colorScheme)
+        .preferredColorScheme(.light)
         .sheet(isPresented: $showPaywall) {
-            SubscriptionPaywallView()
-                .environmentObject(revenueCatManager)
-                .environmentObject(themeManager)
+            SubscriptionPaywallView(
+                reservedNumber: reservedNumber,
+                reservationStartTime: reservationStartTime,
+                onTimerExpired: {
+                    // Clear reservation when timer expires
+                    reservedNumber = nil
+                    reservationStartTime = nil
+                }
+            )
+            .environmentObject(revenueCatManager)
         }
         .onReceive(NotificationCenter.default.publisher(for: .userDidSignOut)) { _ in
             isAuthenticated = false
             isRevenueCatSetup = false
+            // Clear reservation on sign out
+            reservedNumber = nil
+            reservationStartTime = nil
         }
     }
     
@@ -91,64 +108,6 @@ struct ContentView: View {
         }
         
         isCheckingAuth = false
-    }
-}
-
-struct OnboardingView: View {
-    @Binding var showPaywall: Bool
-    @EnvironmentObject var revenueCatManager: RevenueCatManager
-    
-    var body: some View {
-        VStack(spacing: 30) {
-            // Sign out button in top-right corner
-            HStack {
-                Spacer()
-                Button(action: {
-                    Task {
-                        try? await supabase.auth.signOut()
-                        await revenueCatManager.signOut()
-                        // Post notification to update the UI
-                        NotificationCenter.default.post(name: .userDidSignOut, object: nil)
-                    }
-                }) {
-                    Text("Sign Out")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-            }
-            
-            Spacer()
-            
-            Image(systemName: "photo.stack.fill")
-                .font(.system(size: 60))
-                .foregroundColor(.blue)
-            
-            VStack(spacing: 12) {
-                Text("Welcome to Swipe Photos")
-                    .font(.title)
-                    .fontWeight(.bold)
-
-                Text("Your private photo collection")
-                    .font(.body)
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-            }
-            
-            Spacer()
-            
-            Button(action: {
-                showPaywall = true
-            }) {
-                Text("Get Started")
-                    .fontWeight(.semibold)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(12)
-            }
-        }
-        .padding()
     }
 }
 
