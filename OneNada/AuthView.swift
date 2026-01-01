@@ -81,30 +81,6 @@ struct AuthView: View {
                             Text(user?.email ?? "User")
                                 .font(.caption)
                                 .foregroundColor(.secondary)
-                            
-                            Button(action: {
-                                Task {
-                                    do {
-                                        try await supabase.auth.signOut()
-                                        isSignedIn = false
-                                        user = nil
-                                        errorMessage = nil
-                                        await revenueCatManager.signOut()
-                                        NotificationCenter.default.post(name: .userDidSignOut, object: nil)
-                                    } catch {
-                                        errorMessage = "Sign out failed: \(error.localizedDescription)"
-                                    }
-                                }
-                            }) {
-                                Text("Sign Out")
-                                    .font(.subheadline)
-                                    .fontWeight(.medium)
-                                    .foregroundColor(.white)
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 14)
-                                    .background(Color.primary)
-                                    .cornerRadius(10)
-                            }
                         }
                         .padding(20)
                         .background(
@@ -119,10 +95,15 @@ struct AuthView: View {
                     .frame(height: 60)
                 
                 // Footer text
-                Text("By continuing, you agree to our Terms of Service")
-                    .font(.caption2)
-                    .foregroundColor(.secondary.opacity(0.6))
-                    .padding(.bottom, 24)
+                HStack(spacing: 4) {
+                    Text("By continuing, you agree to our")
+                        .font(.caption2)
+                        .foregroundColor(.secondary.opacity(0.6))
+                    
+                    Link("Terms of Service", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                        .font(.caption2)
+                }
+                .padding(.bottom, 24)
             }
         }
     }

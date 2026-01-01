@@ -28,22 +28,6 @@ struct MemberNumberReservationView: View {
     
     var body: some View {
         VStack(spacing: 30) {
-            // Sign out button in top-right corner
-            HStack {
-                Spacer()
-                Button(action: {
-                    Task {
-                        try? await supabase.auth.signOut()
-                        await revenueCatManager.signOut()
-                        NotificationCenter.default.post(name: .userDidSignOut, object: nil)
-                    }
-                }) {
-                    Text("Sign Out")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-            }
-            
             Spacer()
             
             // Spots Remaining Display

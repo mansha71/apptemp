@@ -90,16 +90,6 @@ struct ProfileView: View {
 
                         Spacer()
 
-                        Button("Sign out", role: .destructive) {
-                            Task {
-                                try? await supabase.auth.signOut()
-                                await revenueCatManager.signOut()
-                                // Post notification to update the UI
-                                NotificationCenter.default.post(name: .userDidSignOut, object: nil)
-                            }
-                        }
-                        .buttonStyle(.borderedProminent)
-
                         // Delete Account Button
                         Button("Delete Account") {
                             showDeleteAccountAlert = true
